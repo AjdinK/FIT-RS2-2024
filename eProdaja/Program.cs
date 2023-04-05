@@ -1,4 +1,6 @@
+using eProdaja.DataBase;
 using eProdaja.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,11 +10,22 @@ builder.Services.AddControllers().AddNewtonsoftJson();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-//builder.Services.AddTransient<IProizvodiService , ProizvodiService>();
-builder.Services.AddSingleton<IProizvodiService, ProizvodiService>();
+
+
+
+
+builder.Services.AddTransient<IProizvodiService, ProizvodiService>();
+builder.Services.AddTransient<IKorisniciService, KorisniciService>();
+//builder.Services.AddSingleton<IProizvodiService, ProizvodiService>();
+
+builder.Services.AddDbContext<EProdajaContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
+
+
 
 var app = builder.Build();
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment()) {
     app.UseSwagger();

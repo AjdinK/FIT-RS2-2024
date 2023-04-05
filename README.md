@@ -2,9 +2,9 @@
 Vjezbe iz rs II
 _____________________________________
 
-*Visual studio 2022
-*Sql server 2017+
-*NET 6+
+* Visual studio 2022
+* Sql server 2017+
+* NET 6+
 _____________________________________
 
 -Install docker desktop -> https://www.docker.com/products/docker-desktop/

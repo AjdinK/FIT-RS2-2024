@@ -15,6 +15,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddTransient<IProizvodiService, ProizvodiService>();
 builder.Services.AddTransient<IKorisniciService, KorisniciService>();
+builder.Services.AddTransient<IJediniceMjereService, JediniceMjereService>();
+
+
 //builder.Services.AddSingleton<IProizvodiService, ProizvodiService>();
 
 builder.Services.AddDbContext<EProdajaContext>(options =>

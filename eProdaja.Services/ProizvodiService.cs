@@ -1,8 +1,9 @@
-﻿using eProdaja.DataBase;
+﻿using AutoMapper;
+using eProdaja.DataBase;
+using eProdaja.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,30 +11,25 @@ namespace eProdaja.Services {
     public class ProizvodiService : IProizvodiService {
 
         public EProdajaContext Context { get; set; }
-
-        public ProizvodiService(EProdajaContext context) {
+        public IMapper Mapper { get; set; }
+        public ProizvodiService(EProdajaContext context, IMapper mapper) {
             Context = context;
-        
-        }
-
-        public List<Proizvodi> ProizvodiList = new List<Proizvodi>() { new Proizvodi() { ID = 1 , Naziv = "Laptop" } ,
-
-                new Proizvodi() { ID = 2, Naziv = "Mis" }};
-
-        public IEnumerable<Proizvodi> Get() {
-
-            var tmp = Context.Proizvodis.ToList();
-
-            ProizvodiList.Add(new Proizvodi() { Naziv = "test" , ID = -1});
-            return ProizvodiList;
-
+            Mapper = mapper;
 
         }
 
-        public Proizvodi GetByID(int id ) {
+        public IEnumerable<Model.Proizvodi> Get() {
 
-            return ProizvodiList.FirstOrDefault(x => x.ID == id);
+            List<Model.Proizvodi> lista = new List<Model.Proizvodi>();
 
+            var rez = Context.Proizvodis.ToList();
+            return Mapper.Map<List<Model.Proizvodi>>(rez);
+        }
+
+        public Model.Proizvodi GetByID(int id) {
+            var rez = Context.Proizvodis.Find(id);
+
+            return Mapper.Map<Model.Proizvodi>(rez);
         }
     }
 }

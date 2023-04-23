@@ -7,22 +7,22 @@ namespace eProdaja.Controllers {
     [Route("[controller]")]
     public class ProizvodiController : ControllerBase {
 
-        private readonly IProizvodiService _proizvodiService;
+        private readonly IService<Model.Proizvodi> _service;
 
-        public ProizvodiController(IProizvodiService proizvodiService) {
-            _proizvodiService = proizvodiService;
+        public ProizvodiController(IService<Model.Proizvodi> service) {
+           _service = service;
         }
 
         [HttpGet]
         public IEnumerable<Model.Proizvodi> Get() {
-            return _proizvodiService.Get();
+            return _service.Get();
         }
 
 
         [HttpGet("{id}")]
         public Model.Proizvodi GetByID(int id) {
 
-            return _proizvodiService.GetByID(id);
+            return _service.GetByID(id);
 
         }
 

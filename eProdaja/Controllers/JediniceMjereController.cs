@@ -8,9 +8,9 @@ namespace eProdaja.Controllers {
 
     public class JediniceMjereController : ControllerBase {
 
-        private readonly IJediniceMjereService _service;
+        private readonly IService<Model.JediniceMjere> _service;
 
-        public JediniceMjereController(IJediniceMjereService service) {
+        public JediniceMjereController(IService<Model.JediniceMjere> service) {
             _service = service;
         }
 

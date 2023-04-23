@@ -6,10 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace eProdaja.Services {
-    public interface IProizvodiService {
-
-        IEnumerable<Model.Proizvodi> Get();
-        public Proizvodi GetByID(int id);
+    public interface IProizvodiService : IService <Proizvodi> {
 
     }
 } 

@@ -15,12 +15,17 @@ namespace eProdaja.Services {
             Mapper = mapper;
         }
 
-        public IEnumerable<T> Get(TSearch search = null) {
+        public virtual IEnumerable<T> Get(TSearch search = null) {
 
-            var entity = Context.Set<TDb>();
+            var entity = Context.Set<TDb>().AsQueryable();
+            entity = AddFilter(entity, search);
+
             var list = entity.ToList();
             return Mapper.Map<IList<T>>(list);
-            
+        }
+
+        public virtual IQueryable<TDb> AddFilter(IQueryable<TDb> query, TSearch search = null) {
+            return query;
         }
 
         public T GetByID(int id) {

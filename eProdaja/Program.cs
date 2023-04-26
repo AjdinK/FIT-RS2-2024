@@ -1,4 +1,5 @@
 using eProdaja.DataBase;
+using eProdaja.Model.SearchObjects;
 using eProdaja.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,8 +15,8 @@ builder.Services.AddSwaggerGen();
 
 
 builder.Services.AddTransient<IKorisniciService, KorisniciService>();
-builder.Services.AddTransient<IService<eProdaja.Model.JediniceMjere>, BaseService<eProdaja.Model.JediniceMjere,JediniceMjere>>();
-builder.Services.AddTransient<IService<eProdaja.Model.Proizvodi>, BaseService<eProdaja.Model.Proizvodi, Proizvodi>>();
+builder.Services.AddTransient<IService<eProdaja.Model.JediniceMjere , object>, BaseService<eProdaja.Model.JediniceMjere,JediniceMjere , object>>();
+builder.Services.AddTransient<IService<eProdaja.Model.Proizvodi , ProizvodiSearchObject>, BaseService<eProdaja.Model.Proizvodi, Proizvodi , ProizvodiSearchObject>>();
 
 
 //builder.Services.AddSingleton<IProizvodiService, ProizvodiService>();

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace eProdaja.Services {
-    public class BaseService<T, TDb> : IService<T> where T : class where TDb : class {
+    public class BaseService<T, TDb,TSearch> : IService<T , TSearch> where T : class where TDb : class where TSearch : class {
 
         public EProdajaContext Context {get;set;}
         public IMapper Mapper { get; set; }
@@ -15,7 +15,7 @@ namespace eProdaja.Services {
             Mapper = mapper;
         }
 
-        public IEnumerable<T> Get() {
+        public IEnumerable<T> Get(TSearch search = null) {
 
             var entity = Context.Set<TDb>();
             var list = entity.ToList();

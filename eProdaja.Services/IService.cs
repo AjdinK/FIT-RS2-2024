@@ -6,8 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace eProdaja.Services {
-    public interface IService <T> where T : class{
-        IEnumerable<T> Get();
+    public interface IService <T,TSearch> where T : class where TSearch : class {
+        IEnumerable<T> Get(TSearch search = null);
         T GetByID(int id);
 
     }

@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
 using eProdaja.DataBase;
+using eProdaja.Model.SearchObjects;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace eProdaja.Services {
-    public class BaseService<T, TDb,TSearch> : IService<T , TSearch> where T : class where TDb : class where TSearch : class {
+    public class BaseService<T, TDb,TSearch> : IService<T , TSearch> where T : class where TDb : class where TSearch : BaseSearchObject {
 
         public EProdajaContext Context {get;set;}
         public IMapper Mapper { get; set; }
@@ -19,6 +20,12 @@ namespace eProdaja.Services {
 
             var entity = Context.Set<TDb>().AsQueryable();
             entity = AddFilter(entity, search);
+
+            if (search?.Page.HasValue == true && search?.PageSize.HasValue == true) {
+
+                entity = entity.Take(search.PageSize.Value).Skip(search.Page.Value * search.PageSize.Value);
+
+            }
 
             var list = entity.ToList();
             return Mapper.Map<IList<T>>(list);

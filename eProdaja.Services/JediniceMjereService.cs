@@ -24,6 +24,18 @@ namespace eProdaja.Services {
                 filterQuery = filterQuery.Where(x => x.Naziv == search.Naziv);
             }
 
+            if (search?.JediniceMjereId.HasValue == true) {
+
+                filterQuery = filterQuery.Where(x => x.JedinicaMjereId == search.JediniceMjereId);
+
+            }
+
+            if (search?.Page.HasValue == true) {
+
+                filterQuery = filterQuery.Take(search.PageSize.Value).Skip(search.Page.Value * search.PageSize.Value);
+
+            }
+
             return filterQuery;
         }
     }

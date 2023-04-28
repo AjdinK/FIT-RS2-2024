@@ -30,12 +30,6 @@ namespace eProdaja.Services {
 
             }
 
-            if (search?.Page.HasValue == true) {
-
-                filterQuery = filterQuery.Take(search.PageSize.Value).Skip(search.Page.Value * search.PageSize.Value);
-
-            }
-
             return filterQuery;
         }
     }

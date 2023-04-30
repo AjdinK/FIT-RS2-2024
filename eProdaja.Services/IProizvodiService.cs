@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace eProdaja.Services {
-    public interface IProizvodiService : ICRUDService <Proizvodi , ProizvodiSearchObject , ProizvodiInsertRequest, ProizvodiInsertRequest> {
+    public interface IProizvodiService : ICRUDService <Proizvodi , ProizvodiSearchObject , ProizvodiInsertRequest, ProizvodiUpdateRequest> {
 
 
     }

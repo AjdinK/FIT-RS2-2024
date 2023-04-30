@@ -16,15 +16,37 @@ namespace eProdaja.Services {
         }
 
         public T Insert(TInsert insert) {
-            var set = Context.Set<TDb>();
-            TDb entity = Mapper.Map<TDb>(insert);
-            set.Add(entity);
+            //طريقة الاولى 
+            //var set = Context.Set<TDb>();
+            //TDb entity = Mapper.Map<TDb>(insert);
+            //set.Add(entity);
+            //Context.SaveChanges();
+            //return Mapper.Map<T>(entity);
+
+            //طريقة المتخصرة 
+            var entity = Context.Set<TDb>().Add(Mapper.Map<TDb>(insert)).Entity;
             Context.SaveChanges();
             return Mapper.Map<T>(entity);
         }
 
         public T Update(int id, TUpdate update) {
-            throw new NotImplementedException();
+            //var set = Context.Set<TDb>();
+            //var entity = set.Find(id);
+
+            //if (entity != null)
+            //    Mapper.Map(update, entity);
+            //else
+            //    return null;
+
+            //Context.SaveChanges();
+            //return Mapper.Map<T>(entity);
+
+            var entity = Context.Set<TDb>().Find(id);
+            if (entity == null) return null;
+            Mapper.Map(update, entity);
+            Context.SaveChanges();
+            return Mapper.Map<T>(entity);
+
         }
     }
 }

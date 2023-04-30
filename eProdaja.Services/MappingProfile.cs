@@ -13,6 +13,7 @@ namespace eProdaja.Services {
             CreateMap<DataBase.Proizvodi, Model.Proizvodi>();
             CreateMap<DataBase.JediniceMjere, Model.JediniceMjere>();
             CreateMap<ProizvodiInsertRequest,DataBase.Proizvodi>();
+            CreateMap<ProizvodiUpdateRequest, DataBase.Proizvodi>();
         }
     }
 }

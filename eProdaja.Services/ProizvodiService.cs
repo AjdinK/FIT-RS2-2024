@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace eProdaja.Services {
-    public class ProizvodiService : BaseCRUDService <Model.Proizvodi,DataBase.Proizvodi,ProizvodiSearchObject,ProizvodiInsertRequest,ProizvodiInsertRequest>, IProizvodiService {
+    public class ProizvodiService : BaseCRUDService <Model.Proizvodi,DataBase.Proizvodi,ProizvodiSearchObject,ProizvodiInsertRequest, ProizvodiUpdateRequest>, IProizvodiService {
 
         public ProizvodiService(EProdajaContext context, IMapper mapper): base(context,mapper) {
         }

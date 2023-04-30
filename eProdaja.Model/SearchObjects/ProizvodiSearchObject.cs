@@ -8,6 +8,5 @@ namespace eProdaja.Model.SearchObjects {
         public string Naziv { get; set; }
         public string Sifra { get; set; }
 
-
     }
 }

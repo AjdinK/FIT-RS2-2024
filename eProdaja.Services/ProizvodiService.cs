@@ -30,12 +30,5 @@ namespace eProdaja.Services {
             return filterQuery;
         }
 
-        public Model.Proizvodi Insert(ProizvodiInsertRequest insert) {
-            throw new NotImplementedException();
-        }
-
-        public Model.Proizvodi Update(int id, ProizvodiInsertRequest update) {
-            throw new NotImplementedException();
-        }
     }
 }

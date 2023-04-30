@@ -8,7 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace eProdaja.Services {
-    public class BaseCRUDService<T , TDb , TSearch , TInsert , TUpdate> : BaseService <T , TDb , TSearch> , ICRUDService <T, TSearch, TInsert, TUpdate> where T : class where TDb : class where TSearch : BaseSearchObject where TInsert : class where TUpdate : class {
+    public class BaseCRUDService<T , TDb , TSearch , TInsert , TUpdate> :
+        BaseService <T , TDb , TSearch> , ICRUDService <T, TSearch, TInsert, TUpdate>
+        where T : class where TDb : class where TSearch : BaseSearchObject where TInsert : class where TUpdate : class {
 
         public BaseCRUDService(EProdajaContext context, IMapper mapper) : base(context, mapper) { 
         }
@@ -17,6 +19,7 @@ namespace eProdaja.Services {
             var set = Context.Set<TDb>();
             TDb entity = Mapper.Map<TDb>(insert);
             set.Add(entity);
+            Context.SaveChanges();
             return Mapper.Map<T>(entity);
         }
 

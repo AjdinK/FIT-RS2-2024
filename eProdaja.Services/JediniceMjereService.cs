@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using eProdaja.DataBase;
 using eProdaja.Model;
+using eProdaja.Model.Requests;
 using eProdaja.Model.SearchObjects;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,8 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace eProdaja.Services {
-    public class JediniceMjereService : BaseService<Model.JediniceMjere, DataBase.JediniceMjere, JediniceMjereSearchObject>,
-        IService<Model.JediniceMjere, JediniceMjereSearchObject> {
+    public class JediniceMjereService : BaseCRUDService<Model.JediniceMjere, DataBase.JediniceMjere, JediniceMjereSearchObject , JediniceMjereUpsertRequest , JediniceMjereUpsertRequest>,
+        IJediniceMjereService {
 
         public JediniceMjereService(EProdajaContext context, IMapper mapper) : base(context, mapper) {
         }

@@ -16,7 +16,7 @@ builder.Services.AddSwaggerGen();
 
 
 builder.Services.AddTransient<IKorisniciService, KorisniciService>();
-builder.Services.AddTransient<IService<eProdaja.Model.JediniceMjere , JediniceMjereSearchObject>, BaseService<eProdaja.Model.JediniceMjere,JediniceMjere , JediniceMjereSearchObject>>();
+builder.Services.AddTransient<IJediniceMjereService, JediniceMjereService>();
 builder.Services.AddTransient<IProizvodiService,ProizvodiService>();
 
 

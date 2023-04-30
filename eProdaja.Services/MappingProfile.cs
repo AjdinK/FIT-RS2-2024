@@ -14,6 +14,7 @@ namespace eProdaja.Services {
             CreateMap<DataBase.JediniceMjere, Model.JediniceMjere>();
             CreateMap<ProizvodiInsertRequest,DataBase.Proizvodi>();
             CreateMap<ProizvodiUpdateRequest, DataBase.Proizvodi>();
+            CreateMap<JediniceMjereUpsertRequest, DataBase.JediniceMjere>();
         }
     }
 }

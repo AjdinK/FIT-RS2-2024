@@ -14,7 +14,6 @@ namespace eProdaja.Services {
 
         public BaseCRUDService(EProdajaContext context, IMapper mapper) : base(context, mapper) { 
         }
-
         public T Insert(TInsert insert) {
             //طريقة الاولى 
             //var set = Context.Set<TDb>();
@@ -46,7 +45,7 @@ namespace eProdaja.Services {
             Mapper.Map(update, entity);
             Context.SaveChanges();
             return Mapper.Map<T>(entity);
-
         }
+
     }
 }

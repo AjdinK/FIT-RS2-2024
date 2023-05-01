@@ -9,7 +9,5 @@ using System.Threading.Tasks;
 
 namespace eProdaja.Services {
     public interface IProizvodiService : ICRUDService <Proizvodi , ProizvodiSearchObject , ProizvodiInsertRequest, ProizvodiUpdateRequest> {
-
-
     }
 } 

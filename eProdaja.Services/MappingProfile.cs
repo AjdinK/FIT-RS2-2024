@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 namespace eProdaja.Services {
     public class MappingProfile : Profile {
         public MappingProfile() {
-
             CreateMap<DataBase.Korisnici, Model.Korisnici>();
             CreateMap<DataBase.Proizvodi, Model.Proizvodi>();
             CreateMap<DataBase.JediniceMjere, Model.JediniceMjere>();
@@ -18,8 +17,9 @@ namespace eProdaja.Services {
             CreateMap<JediniceMjereUpsertRequest, DataBase.JediniceMjere>();
             CreateMap<VrsteProizvodumUpsertRequest, DataBase.VrsteProizvodum>();
             CreateMap<DataBase.VrsteProizvodum, Model.VrsteProizvodum>();
-            
-           
+            CreateMap<DataBase.Korisnici, Model.Korisnici>();
+            CreateMap<KorisniciInsertRequest, DataBase.Korisnici>();
+            CreateMap<KorisniciUpdateRequest, DataBase.Korisnici>();
         }
     }
 }

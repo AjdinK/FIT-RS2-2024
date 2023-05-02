@@ -19,6 +19,8 @@ builder.Services.AddTransient<IKorisniciService, KorisniciService>();
 builder.Services.AddTransient<IJediniceMjereService, JediniceMjereService>();
 builder.Services.AddTransient<IProizvodiService,ProizvodiService>();
 builder.Services.AddTransient<IVrsteProizvodumService, VrsteProizvodumService>();
+builder.Services.AddTransient<IKorisniciService, KorisniciService>();
+
 
 //builder.Services.AddSingleton<IProizvodiService, ProizvodiService>();
 

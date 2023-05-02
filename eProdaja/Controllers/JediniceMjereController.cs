@@ -7,9 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace eProdaja.Controllers {
 
     public class JediniceMjereController : BaseCRUDController<Model.JediniceMjere, JediniceMjereSearchObject , JediniceMjereUpsertRequest , JediniceMjereUpsertRequest> {
-
-        public JediniceMjereController(IJediniceMjereService service) : base(service) {
-           
-        }
+        public JediniceMjereController(IJediniceMjereService service) : base(service) {}
     }
 }

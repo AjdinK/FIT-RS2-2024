@@ -7,10 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace eProdaja.Controllers {
     
     public class ProizvodiController : BaseCRUDController<Model.Proizvodi , ProizvodiSearchObject , ProizvodiInsertRequest , ProizvodiUpdateRequest> {
-
-        public ProizvodiController(IProizvodiService service)
-            : base(service) {
-          
-        }
+        public ProizvodiController(IProizvodiService service) : base(service) {}
     }
 }

@@ -5,6 +5,13 @@ namespace eProdaja.DataBase;
 
 public partial class Korisnici
 {
+    public Korisnici() {
+
+        Izlazis = new HashSet<Izlazi>();
+        KorisniciUloges = new HashSet<KorisniciUloge>();
+        Ulazis = new HashSet<Ulazi>();
+    }
+
     public int KorisnikId { get; set; }
 
     public string Ime { get; set; } = null!;

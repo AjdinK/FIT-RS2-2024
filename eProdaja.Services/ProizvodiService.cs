@@ -1,20 +1,37 @@
 ﻿using AutoMapper;
 using eProdaja.DataBase;
-using eProdaja.Model;
 using eProdaja.Model.Requests;
 using eProdaja.Model.SearchObjects;
-using Microsoft.EntityFrameworkCore.Query.Internal;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using eProdaja.Services.ProductStateMachine;
 
 namespace eProdaja.Services {
     public class ProizvodiService : BaseCRUDService <Model.Proizvodi,DataBase.Proizvodi,ProizvodiSearchObject,ProizvodiInsertRequest, ProizvodiUpdateRequest>, IProizvodiService {
 
-        public ProizvodiService(EProdajaContext context, IMapper mapper): base(context,mapper) {
+        public ProizvodiService(EProdajaContext context, IMapper mapper): base(context,mapper) {}
+        public override Model.Proizvodi Insert(ProizvodiInsertRequest insert) {
+            var state = BaseState.CreateState(stateName: "Initial");
+            state.Context = Context;
+            return state.Insert(insert);
         }
+
+        public override Model.Proizvodi Update(int id, ProizvodiUpdateRequest update) {
+            var product = Context.Proizvodis.Find(id);
+            var state = BaseState.CreateState(stateName: product.StateMachine);
+            state.Context = Context;
+            state.CurrentEntity = product;
+            state.Update(update);
+            return GetByID(id);
+        }
+
+        public Model.Proizvodi Activate(int id) {
+            var product = Context.Proizvodis.Find(id);
+            var state = BaseState.CreateState(stateName: product.StateMachine);
+            state.Context = Context;
+            state.CurrentEntity = product;
+            state.Activate();
+            return GetByID(id);
+        }
+
         public override IQueryable<DataBase.Proizvodi> AddFilter(IQueryable<DataBase.Proizvodi> query, ProizvodiSearchObject search = null) {
             var filterQuery = base.AddFilter(query, search);
 
@@ -26,9 +43,7 @@ namespace eProdaja.Services {
             if (!string.IsNullOrWhiteSpace(search?.Naziv)) {
                 filterQuery = filterQuery.Where(x => x.Naziv.Contains(search.Naziv));
             }
-
             return filterQuery;
         }
-
     }
 }

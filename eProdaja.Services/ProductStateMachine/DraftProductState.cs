@@ -1,4 +1,6 @@
-﻿using eProdaja.Model.Requests;
+﻿using AutoMapper;
+using eProdaja.DataBase;
+using eProdaja.Model.Requests;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +9,8 @@ using System.Threading.Tasks;
 
 namespace eProdaja.Services.ProductStateMachine {
     public class DraftProductState : BaseState {
-        public override void Update(ProizvodiUpdateRequest update) {
-            //call data by calling EF ...
-            CurrentEntity.StateMachine = "draft";
-        }
-        public override void Activate() {
-            CurrentEntity.StateMachine = "active";
-        }
+        public DraftProductState(IServiceProvider serviceProvider, EProdajaContext context, IMapper mapper) :
+            base (serviceProvider , context , mapper) { }
+
     }
 }

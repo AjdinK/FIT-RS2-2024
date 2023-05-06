@@ -1,40 +1,48 @@
-﻿using eProdaja.DataBase;
+﻿using AutoMapper;
+using eProdaja.DataBase;
 using eProdaja.Model.ProductStateMachine;
 using eProdaja.Model.Requests;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 
 namespace eProdaja.Services.ProductStateMachine {
-    public abstract class BaseState {
+    public class BaseState {
 
         public string CurrentState { get; set; }
         public DataBase.Proizvodi CurrentEntity { get; set; }
         public EProdajaContext Context { get; set; } = null;
+        public IMapper Mapper { get; set; }
+        public IServiceProvider ServiceProvider { get; set; }
 
-        public virtual Model.Proizvodi Insert (ProizvodiInsertRequest insert) { throw new Exception("Not_Allowed"); }
-        public virtual Model.Proizvodi Update (ProizvodiUpdateRequest update) { throw new Exception("Not_Allowed"); }
-        public virtual void Activate () { throw new Exception("Not_Allowed"); }
-        public virtual void Hide () { throw new Exception("Not_Allowed"); }
-        public virtual void Delete () { throw new Exception("Not_Allowed"); }
+        public BaseState(IServiceProvider serviceProvider, EProdajaContext context, IMapper mapper) {
+            ServiceProvider = serviceProvider;
+            Context = context;
+            Mapper = mapper;
+        }
 
-        public static BaseState CreateState(string stateName) {
+        public virtual Model.Proizvodi Insert(ProizvodiInsertRequest insert) { throw new Exception("Not_Allowed"); }
+        public virtual Model.Proizvodi Update(ProizvodiUpdateRequest update) { throw new Exception("Not_Allowed"); }
+        public virtual void Activate() { throw new Exception("Not_Allowed"); }
+        public virtual void Hide() { throw new Exception("Not_Allowed"); }
+        public virtual void Delete() { throw new Exception("Not_Allowed"); }
+
+        public BaseState CreateState(string stateName) {
 
             switch (stateName) {
-                case "Initial":
-                    return new InitialProductState();
+                case "initial":
+                    return ServiceProvider.GetService<InitialProductState>();
                     break;
 
                 case "draft":
-                    return new DraftProductState();
-                    break;
+                    return ServiceProvider.GetService<DraftProductState>();
 
                 case "active":
-                    return new ActiveProductState();
-                    break;
+                    return ServiceProvider.GetService<ActiveProductState>();
 
                 default:
                     throw new Exception("Not_Supported");
             }
-        
+
         }
     }
 }

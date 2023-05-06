@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eProdaja.Services", "..\ePr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eProdaja.Model", "..\eProdaja.Model\eProdaja.Model.csproj", "{638A97F1-FAF3-4799-ACD1-31EC290ECB3A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eProdaja.WinUI", "..\eProdaja.WinUI\eProdaja.WinUI.csproj", "{DC7EB896-5ED7-4029-B96A-72DF13B3246C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{638A97F1-FAF3-4799-ACD1-31EC290ECB3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{638A97F1-FAF3-4799-ACD1-31EC290ECB3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{638A97F1-FAF3-4799-ACD1-31EC290ECB3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC7EB896-5ED7-4029-B96A-72DF13B3246C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC7EB896-5ED7-4029-B96A-72DF13B3246C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC7EB896-5ED7-4029-B96A-72DF13B3246C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC7EB896-5ED7-4029-B96A-72DF13B3246C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace eProdaja.Services.ProductStateMachine {
-    public class ActiveStateMachine : BaseState {
+    public class ActiveProductState : BaseState {
 
     }
 }

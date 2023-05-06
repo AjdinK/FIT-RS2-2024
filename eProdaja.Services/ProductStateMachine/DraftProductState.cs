@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace eProdaja.Services.ProductStateMachine {
-    public class DraftStateMachine : BaseState {
+    public class DraftProductState : BaseState {
         public override void Update(ProizvodiUpdateRequest update) {
             //call data by calling EF ...
             CurrentEntity.StateMachine = "draft";

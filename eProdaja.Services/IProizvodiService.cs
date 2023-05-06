@@ -10,5 +10,6 @@ using System.Threading.Tasks;
 namespace eProdaja.Services {
     public interface IProizvodiService : ICRUDService <Proizvodi , ProizvodiSearchObject , ProizvodiInsertRequest, ProizvodiUpdateRequest> {
         Model.Proizvodi Activate(int id);
+        List<string> AllowedActions(int id);
     }
 } 

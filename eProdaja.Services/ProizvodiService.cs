@@ -33,6 +33,12 @@ namespace eProdaja.Services {
             return GetByID(id);
         }
 
+        public List<string> AllowedActions(int id) {
+            var product = Context.Proizvodis.Find(id);
+            var state = BaseState.CreateState(product.StateMachine);
+            return state.AllowedActions();
+        }
+
         public override IQueryable<DataBase.Proizvodi> AddFilter(IQueryable<DataBase.Proizvodi> query, ProizvodiSearchObject search = null) {
             var filterQuery = base.AddFilter(query, search);
             if (!string.IsNullOrWhiteSpace(search?.Sifra)) {
@@ -43,5 +49,6 @@ namespace eProdaja.Services {
             }
             return filterQuery;
         }
+
     }
 }

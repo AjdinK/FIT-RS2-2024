@@ -44,5 +44,6 @@ namespace eProdaja.Services.ProductStateMachine {
             }
 
         }
+        public virtual List<string> AllowedActions() { return new List<string>(); }
     }
 }

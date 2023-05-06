@@ -23,5 +23,11 @@ namespace eProdaja.Services.ProductStateMachine {
             CurrentEntity.StateMachine = "active";
             Context.SaveChanges();
         }
+        public override List<string> AllowedActions() {
+            var list = base.AllowedActions();
+            list.Add("update");
+            list.Add("activate");
+            return list;
+        }
     }
 }

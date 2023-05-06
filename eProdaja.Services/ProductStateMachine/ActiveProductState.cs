@@ -1,9 +1,11 @@
-﻿using AutoMapper;
-using eProdaja.DataBase;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace eProdaja.Services.ProductStateMachine {
     public class ActiveProductState : BaseState {
-        public ActiveProductState(IServiceProvider serviceProvider, EProdajaContext Context, IMapper Mapper) : 
-            base(serviceProvider, Context, Mapper) { }
+
     }
 }

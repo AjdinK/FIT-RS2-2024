@@ -7,19 +7,28 @@ using eProdaja.Services.ProductStateMachine;
 namespace eProdaja.Services {
     public class ProizvodiService : BaseCRUDService <Model.Proizvodi,DataBase.Proizvodi,ProizvodiSearchObject,ProizvodiInsertRequest, ProizvodiUpdateRequest>, IProizvodiService {
 
-        public BaseState BaseState { get; set; }
-        public ProizvodiService(EProdajaContext context, IMapper mapper , BaseState baseState): base (context,mapper) {
-            BaseState = baseState;
-        }
+        public ProizvodiService(EProdajaContext context, IMapper mapper): base(context,mapper) {}
         public override Model.Proizvodi Insert(ProizvodiInsertRequest insert) {
-            var state = BaseState.CreateState("initial");
+            var state = BaseState.CreateState(stateName: "Initial");
+            state.Context = Context;
             return state.Insert(insert);
         }
+
         public override Model.Proizvodi Update(int id, ProizvodiUpdateRequest update) {
             var product = Context.Proizvodis.Find(id);
-            var state = BaseState.CreateState(product.StateMachine);
+            var state = BaseState.CreateState(stateName: product.StateMachine);
+            state.Context = Context;
             state.CurrentEntity = product;
             state.Update(update);
+            return GetByID(id);
+        }
+
+        public Model.Proizvodi Activate(int id) {
+            var product = Context.Proizvodis.Find(id);
+            var state = BaseState.CreateState(stateName: product.StateMachine);
+            state.Context = Context;
+            state.CurrentEntity = product;
+            state.Activate();
             return GetByID(id);
         }
 
@@ -35,10 +44,6 @@ namespace eProdaja.Services {
                 filterQuery = filterQuery.Where(x => x.Naziv.Contains(search.Naziv));
             }
             return filterQuery;
-        }
-
-        public Model.Proizvodi Activate(int id) {
-            throw new NotImplementedException();
         }
     }
 }

@@ -1,6 +1,8 @@
-﻿using eProdaja.Model.Requests;
+﻿using eProdaja.DataBase;
+using eProdaja.Model.Requests;
 using eProdaja.Model.SearchObjects;
 using eProdaja.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace eProdaja.Controllers {
 

@@ -21,7 +21,7 @@ namespace eProdaja.Services.ProductStateMachine {
         }
 
         public virtual Model.Proizvodi Insert(ProizvodiInsertRequest insert) { throw new Exception("Not_Allowed"); }
-        public virtual Model.Proizvodi Update(ProizvodiUpdateRequest update) { throw new Exception("Not_Allowed"); }
+        public virtual void Update(ProizvodiUpdateRequest update) { throw new Exception("Not_Allowed"); }
         public virtual void Activate() { throw new Exception("Not_Allowed"); }
         public virtual void Hide() { throw new Exception("Not_Allowed"); }
         public virtual void Delete() { throw new Exception("Not_Allowed"); }

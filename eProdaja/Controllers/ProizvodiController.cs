@@ -5,8 +5,14 @@ using eProdaja.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eProdaja.Controllers {
-    
     public class ProizvodiController : BaseCRUDController<Model.Proizvodi , ProizvodiSearchObject , ProizvodiInsertRequest , ProizvodiUpdateRequest> {
-        public ProizvodiController(IProizvodiService service) : base(service) {}
+        public IProizvodiService Service { get; set; }
+        public ProizvodiController(IProizvodiService service) : base(service) { Service = service; }
+
+        [HttpPut("{id}/Activate")]
+        public Model.Proizvodi Activate (int id) {
+            var rez = Service.Activate(id);
+            return rez;
+        }
     }
 }

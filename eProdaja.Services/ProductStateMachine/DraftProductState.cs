@@ -27,6 +27,7 @@ namespace eProdaja.Services.ProductStateMachine {
             var list = base.AllowedActions();
             list.Add("update");
             list.Add("activate");
+            list.Add("hide");
             return list;
         }
     }

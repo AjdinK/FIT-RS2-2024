@@ -1,5 +1,4 @@
-﻿using eProdaja.Model.SearchObjects;
-using eProdaja.Services;
+﻿using eProdaja.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eProdaja.Controllers {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace eProdaja.Model.Requests {
+﻿namespace eProdaja.Model.Requests {
     public class ProizvodiInsertRequest {
 
         public string Naziv { get; set; }

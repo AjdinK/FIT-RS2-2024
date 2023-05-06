@@ -2,12 +2,8 @@
 using eProdaja.DataBase;
 using eProdaja.Model.Requests;
 using eProdaja.Model.SearchObjects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace eProdaja.Services {
     public class KorisniciService : BaseCRUDService<Model.Korisnici , DataBase.Korisnici , KorisniciSearchObject, KorisniciInsertRequest , KorisniciUpdateRequest> , IKorisniciService {

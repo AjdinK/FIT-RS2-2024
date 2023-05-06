@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace eProdaja.Model {
+﻿namespace eProdaja.Model {
     public class Korisnici {
-
         public int KorisnikId { get; set; }
 
         public string Ime { get; set; }

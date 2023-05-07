@@ -36,7 +36,6 @@
             btnShow.TabIndex = 0;
             btnShow.Text = "Show";
             btnShow.UseVisualStyleBackColor = true;
-            btnShow.Click += btnShow_Click;
             // 
             // dataGridView1
             // 

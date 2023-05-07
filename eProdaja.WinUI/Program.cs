@@ -9,7 +9,7 @@ namespace eProdaja.WinUI {
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             //Application.Run(new Form1());
-            Application.Run(new frmProductList());
+            Application.Run(new frmKorisnici());
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using eProdaja.Model;
 using Flurl;
 using Flurl.Http;
 
@@ -18,8 +19,10 @@ namespace eProdaja.WinUI {
         public frmProductList() { InitializeComponent(); }
 
         private async void btnShow_Click(object sender, EventArgs e) {
-            var list = await ProductService.Get<dynamic>();
-            var rez = await ProductService.GetById<dynamic>(14);
+           // var list = await ProductService.Get<List<Proizvodi>>();
+            var entity = await ProductService.GetById<Proizvodi>(14);
+            entity.Naziv = "Updated from WIN UI";
+            var updated = await ProductService.Put<Proizvodi>(entity.ProizvodId, entity);
         }
 
         private void frmProductList_Load(object sender, EventArgs e) {}

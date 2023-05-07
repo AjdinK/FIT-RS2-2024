@@ -17,5 +17,9 @@ namespace eProdaja.WinUI {
             var list = await $"{_endpoint}{_resoruce}".GetJsonAsync<T>();
             return list;
         }
+        public async Task<T> GetById<T>(object id) {
+            var rez = await $"{_endpoint}{_resoruce}/{id}".GetJsonAsync<T>();
+            return rez;
+        }
     }
 }

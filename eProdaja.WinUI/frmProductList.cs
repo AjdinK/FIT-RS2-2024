@@ -17,13 +17,11 @@ namespace eProdaja.WinUI {
 
         public frmProductList() { InitializeComponent(); }
 
-        private void btnShow_Click(object sender, EventArgs e) {
-            var list = ProductService.Get<dynamic>().Result;
-            var rez = ProductService.Get<dynamic>().Result;
+        private async void btnShow_Click(object sender, EventArgs e) {
+            var list = await ProductService.Get<dynamic>();
+            var rez = await ProductService.GetById<dynamic>(14);
         }
 
-        private void frmProductList_Load(object sender, EventArgs e) {
-
-        }
+        private void frmProductList_Load(object sender, EventArgs e) {}
     }
 }

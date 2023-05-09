@@ -1,4 +1,5 @@
 ﻿using eProdaja.Model;
+using eProdaja.Model.SearchObjects;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,7 +18,10 @@ namespace eProdaja.WinUI {
         private void frmKorisnici_Load(object sender, EventArgs e) { }
 
         private async void btnShow_Click(object sender, EventArgs e) {
-            var list = await KorisniciService.Get<List<Korisnici>>();
+            var searchObject = new KorisniciSearchObject();
+            searchObject.KorisnickoIme = txtUsername.Text;
+            searchObject.NameFTS = txtName.Text;
+            var list = await KorisniciService.Get<List<Korisnici>>(searchObject);
             dgvKorisnici.DataSource = list;
         }
     }

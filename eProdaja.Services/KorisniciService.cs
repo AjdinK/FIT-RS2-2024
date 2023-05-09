@@ -62,5 +62,18 @@ namespace eProdaja.Services {
             return Convert.ToBase64String(inArray);
         }
 
+        public override IQueryable<Korisnici> AddFilter(IQueryable<Korisnici> query, KorisniciSearchObject search = null) {
+            var filterQuery = base.AddFilter(query, search);
+
+            if (!string.IsNullOrWhiteSpace(search?.KorisnickoIme)) {
+                filterQuery = filterQuery.Where(x => x.KorisnickoIme == search.KorisnickoIme);}
+
+            if (!string.IsNullOrWhiteSpace(search?.NameFTS)) {
+                filterQuery = filterQuery.Where(x => x.KorisnickoIme.Contains(search.NameFTS)
+                || x.Ime.Contains(search.NameFTS) || x.Prezime.Contains(search.NameFTS));
+            }
+            return filterQuery;
+        }
+
     }
 }

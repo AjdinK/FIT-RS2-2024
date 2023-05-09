@@ -25,21 +25,25 @@
         private void InitializeComponent() {
             dgvKorisnici = new DataGridView();
             btnShow = new Button();
+            txtUsername = new TextBox();
+            label1 = new Label();
+            label2 = new Label();
+            txtName = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dgvKorisnici).BeginInit();
             SuspendLayout();
             // 
             // dgvKorisnici
             // 
             dgvKorisnici.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvKorisnici.Location = new Point(12, 65);
+            dgvKorisnici.Location = new Point(12, 114);
             dgvKorisnici.Name = "dgvKorisnici";
             dgvKorisnici.RowTemplate.Height = 25;
-            dgvKorisnici.Size = new Size(749, 260);
+            dgvKorisnici.Size = new Size(749, 307);
             dgvKorisnici.TabIndex = 0;
             // 
             // btnShow
             // 
-            btnShow.Location = new Point(686, 36);
+            btnShow.Location = new Point(181, 72);
             btnShow.Name = "btnShow";
             btnShow.Size = new Size(75, 23);
             btnShow.TabIndex = 1;
@@ -47,11 +51,47 @@
             btnShow.UseVisualStyleBackColor = true;
             btnShow.Click += btnShow_Click;
             // 
+            // txtUsername
+            // 
+            txtUsername.Location = new Point(81, 12);
+            txtUsername.Name = "txtUsername";
+            txtUsername.Size = new Size(175, 23);
+            txtUsername.TabIndex = 2;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(13, 15);
+            label1.Name = "label1";
+            label1.Size = new Size(60, 15);
+            label1.TabIndex = 3;
+            label1.Text = "Username";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(13, 46);
+            label2.Name = "label2";
+            label2.Size = new Size(39, 15);
+            label2.TabIndex = 5;
+            label2.Text = "Name";
+            // 
+            // txtName
+            // 
+            txtName.Location = new Point(81, 43);
+            txtName.Name = "txtName";
+            txtName.Size = new Size(175, 23);
+            txtName.TabIndex = 4;
+            // 
             // frmKorisnici
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(773, 337);
+            ClientSize = new Size(773, 433);
+            Controls.Add(label2);
+            Controls.Add(txtName);
+            Controls.Add(label1);
+            Controls.Add(txtUsername);
             Controls.Add(btnShow);
             Controls.Add(dgvKorisnici);
             Name = "frmKorisnici";
@@ -59,11 +99,16 @@
             Load += frmKorisnici_Load;
             ((System.ComponentModel.ISupportInitialize)dgvKorisnici).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private DataGridView dgvKorisnici;
         private Button btnShow;
+        private TextBox txtUsername;
+        private Label label1;
+        private Label label2;
+        private TextBox txtName;
     }
 }

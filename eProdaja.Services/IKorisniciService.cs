@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace eProdaja.Services {
-    public interface IKorisniciService : ICRUDService<Model.Korisnici , KorisniciSearchObject , KorisniciInsertRequest , KorisniciUpdateRequest> { }
-
+    public interface IKorisniciService : ICRUDService<Model.Korisnici , KorisniciSearchObject , KorisniciInsertRequest , KorisniciUpdateRequest> {
+        public Model.Korisnici Login(string name, string password);
+    }
 }

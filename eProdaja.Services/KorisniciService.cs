@@ -5,6 +5,7 @@ using eProdaja.Model.SearchObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,9 +28,7 @@ namespace eProdaja.Services {
             }
 
             Context.SaveChanges();
-            return entity;
-
-        }
+            return entity;}
 
         public override void BeforeInsert(KorisniciInsertRequest insert, Korisnici entity) {
             var salt = GenerateSalt();
@@ -75,5 +74,13 @@ namespace eProdaja.Services {
             return filterQuery;
         }
 
+        public Model.Korisnici Login(string name, string password) {
+            var entitiy = Context.Korisnicis.FirstOrDefault(x => x.KorisnickoIme == name);
+            if (entitiy == null) return null;
+
+            var hash = GenerateHash(entitiy.LozinkaSalt, password);
+            if (hash != entitiy.LozinkaHash) return null;
+            return Mapper.Map<Model.Korisnici>(entitiy);
+         }
     }
 }

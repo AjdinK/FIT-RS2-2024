@@ -25,8 +25,7 @@ builder.Services.AddSwaggerGen(c => {
             new OpenApiSecurityScheme{ Reference = new OpenApiReference
             {Type = ReferenceType.SecurityScheme , Id = "BasicAuthentication"}},
             new string []{ }}
-    });
-});
+    });});
 
 //builder.Services.AddSingleton<IProizvodiService, ProizvodiService>();
 
@@ -42,6 +41,7 @@ builder.Services.AddTransient<ActiveProductState>();
 
 builder.Services.AddDbContext<EProdajaContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 builder.Services.AddAutoMapper(typeof(IKorisniciService));
 
 builder.Services.AddAuthentication("BasicAuthentication")
@@ -52,14 +52,10 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment()) {
     app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    app.UseSwaggerUI();}
 
 app.UseHttpsRedirection();
-
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();

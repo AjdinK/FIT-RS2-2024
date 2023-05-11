@@ -11,25 +11,27 @@ namespace eProdaja.WinUI {
 
         private string _resoruce = null;
         public string _endpoint = "https://localhost:7289/";
+        public static string username = null;
+        public static string password = null;
 
         public APIService(string resorce) { _resoruce = resorce; }
 
         public async Task<T> Get<T>(object search = null) {
             var query = "";
             if (search != null) { query = await search.ToQueryString(); }
-            var list = await $"{_endpoint}{_resoruce}?{query}".GetJsonAsync<T>();
+            var list = await $"{_endpoint}{_resoruce}?{query}".WithBasicAuth(username,password).GetJsonAsync<T>();
             return list;
         }
         public async Task<T> GetById<T>(object id) {
-            var rez = await $"{_endpoint}{_resoruce}/{id}".GetJsonAsync<T>();
+            var rez = await $"{_endpoint}{_resoruce}/{id}".WithBasicAuth(username, password).GetJsonAsync<T>();
             return rez;
         }
         public async Task<T> Post<T>(object request) {
-            var rez = await $"{_endpoint}{_resoruce}".PostJsonAsync(request).ReceiveJson<T>();
+            var rez = await $"{_endpoint}{_resoruce}".WithBasicAuth(username, password).PostJsonAsync(request).ReceiveJson<T>();
             return rez;
         }
         public async Task<T> Put<T>(object id , object request) {
-            var rez = await $"{_endpoint}{_resoruce}/{id}".PutJsonAsync(request).ReceiveJson<T>();
+            var rez = await $"{_endpoint}{_resoruce}/{id}".WithBasicAuth(username, password).PutJsonAsync(request).ReceiveJson<T>();
             return rez;
         }
     }

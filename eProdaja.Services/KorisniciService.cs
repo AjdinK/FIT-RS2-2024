@@ -2,6 +2,7 @@
 using eProdaja.DataBase;
 using eProdaja.Model.Requests;
 using eProdaja.Model.SearchObjects;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,6 @@ namespace eProdaja.Services {
                 korisniciUloge.DatumIzmjene = DateTime.Now;
                 Context.KorisniciUloges.Add(korisniciUloge);
             }
-
             Context.SaveChanges();
             return entity;}
 
@@ -75,7 +75,7 @@ namespace eProdaja.Services {
         }
 
         public Model.Korisnici Login(string name, string password) {
-            var entitiy = Context.Korisnicis.FirstOrDefault(x => x.KorisnickoIme == name);
+            var entitiy = Context.Korisnicis.Include("KorisniciUloges.Uloga").FirstOrDefault(x => x.KorisnickoIme == name);
             if (entitiy == null) return null;
 
             var hash = GenerateHash(entitiy.LozinkaSalt, password);

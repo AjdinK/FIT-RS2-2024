@@ -7,14 +7,14 @@ namespace eProdaja.Controllers {
         public BaseCRUDController(ICRUDService<T, TSearch, TInsert, TUpdate> service) : base(service) { }
 
         [HttpPost]
-        public T Insert([FromBody] TInsert insert) { 
+        public virtual T Insert([FromBody] TInsert insert) { 
         
             var rez = ((ICRUDService<T, TSearch, TInsert, TUpdate>)this.Service).Insert(insert);
             return rez;
         }
 
         [HttpPut("id")]
-        public T Update(int id , [FromBody] TUpdate update) {
+        public virtual T Update(int id , [FromBody] TUpdate update) {
 
             var rez = ((ICRUDService<T, TSearch, TInsert, TUpdate>)this.Service).Update(id, update);
             return rez;

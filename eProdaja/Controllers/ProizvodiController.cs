@@ -17,7 +17,6 @@ namespace eProdaja.Controllers {
         [HttpPut("{id}/AllowedActions")]
         public List<string> AllowedActions (int id) {
             var rez = Service.AllowedActions(id);
-            return rez;
-        }
+            return rez; }
     }
 }

@@ -9,8 +9,6 @@ namespace eProdaja.Controllers {
 
     [ApiController]
     [Route("[controller]")]
-    [Authorize]
-
     public class KorisniciController : BaseCRUDController<Model.Korisnici , KorisniciSearchObject, KorisniciInsertRequest , KorisniciUpdateRequest> {
         public KorisniciController(IKorisniciService service) : base(service) { }
 

@@ -8,16 +8,12 @@ namespace eProdaja.Controllers {
 
         [HttpPost]
         public virtual T Insert([FromBody] TInsert insert) { 
-        
             var rez = ((ICRUDService<T, TSearch, TInsert, TUpdate>)this.Service).Insert(insert);
-            return rez;
-        }
+            return rez;}
 
         [HttpPut("id")]
         public virtual T Update(int id , [FromBody] TUpdate update) {
-
             var rez = ((ICRUDService<T, TSearch, TInsert, TUpdate>)this.Service).Update(id, update);
-            return rez;
-        }
+            return rez;}
     }
 }

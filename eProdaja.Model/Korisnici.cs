@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace eProdaja.Model {
@@ -19,6 +20,8 @@ namespace eProdaja.Model {
 
         public bool? Status { get; set; }
         public virtual ICollection<KorisniciUloge> KorisniciUloges { get; } = new List<KorisniciUloge>();
+        public string RoleNames => string.Join
+            (", ", KorisniciUloges?.Select(x => x.Uloga?.Naziv)?.ToList());
 
         //public virtual ICollection<Izlazi> Izlazis { get; } = new List<Izlazi>();
         //public virtual ICollection<Ulazi> Ulazis { get; } = new List<Ulazi>();

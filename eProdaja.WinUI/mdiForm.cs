@@ -10,9 +10,16 @@ using System.Windows.Forms;
 
 namespace eProdaja.WinUI {
     public partial class mdiForm : Form {
-        public mdiForm() { InitializeComponent();}
+        public mdiForm() { InitializeComponent(); }
 
         private void pretregaToolStripMenuItem_Click(object sender, EventArgs e) {
+            frmKorisnici forma = new frmKorisnici();
+            forma.ShowDialog();
+        }
+
+        private void noviKorisnikToolStripMenuItem_Click(object sender, EventArgs e) {
+            frmKorisniciDetails forma = new frmKorisniciDetails();
+            forma.ShowDialog();
 
         }
     }

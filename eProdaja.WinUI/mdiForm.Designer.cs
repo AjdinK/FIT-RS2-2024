@@ -58,8 +58,9 @@
             // noviKorisnikToolStripMenuItem
             // 
             noviKorisnikToolStripMenuItem.Name = "noviKorisnikToolStripMenuItem";
-            noviKorisnikToolStripMenuItem.Size = new Size(143, 22);
+            noviKorisnikToolStripMenuItem.Size = new Size(180, 22);
             noviKorisnikToolStripMenuItem.Text = "Novi korisnik";
+            noviKorisnikToolStripMenuItem.Click += noviKorisnikToolStripMenuItem_Click;
             // 
             // proizvodiToolStripMenuItem
             // 

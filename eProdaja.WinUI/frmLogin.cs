@@ -13,8 +13,10 @@ namespace eProdaja.WinUI {
             try {
                 var rez = await _api.Get<dynamic>();
 
-                frmKorisnici forma = new frmKorisnici();
-                forma.Show();
+                //frmKorisnici forma = new frmKorisnici();
+                //forma.Show();
+                mdiForm forma = new mdiForm();
+                forma.ShowDialog();
             }
             catch (Exception ex) { MessageBox.Show("Wrong usermae or password"); }
         }

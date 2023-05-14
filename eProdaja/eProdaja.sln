@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eProdaja.Services", "..\ePr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eProdaja.Model", "..\eProdaja.Model\eProdaja.Model.csproj", "{638A97F1-FAF3-4799-ACD1-31EC290ECB3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eProdaja.WinUI", "..\eProdaja.WinUI\eProdaja.WinUI.csproj", "{DC7EB896-5ED7-4029-B96A-72DF13B3246C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eProdaja.WinUI", "..\eProdaja.WinUI\eProdaja.WinUI.csproj", "{DC7EB896-5ED7-4029-B96A-72DF13B3246C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

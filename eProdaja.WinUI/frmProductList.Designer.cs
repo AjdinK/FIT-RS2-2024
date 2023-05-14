@@ -30,7 +30,7 @@
             // 
             // btnShow
             // 
-            btnShow.Location = new Point(12, 29);
+            btnShow.Location = new Point(713, 29);
             btnShow.Name = "btnShow";
             btnShow.Size = new Size(75, 23);
             btnShow.TabIndex = 0;

@@ -14,11 +14,11 @@ namespace eProdaja.WinUI {
     public partial class frmKorisnici : Form {
         public APIService KorisniciService { get; set; } = new APIService("Korisnici");
 
-        public frmKorisnici() { 
+        public frmKorisnici() {
             InitializeComponent();
             dgvKorisnici.AutoGenerateColumns = false;
         }
-        private void frmKorisnici_Load(object sender, EventArgs e) {}
+        private void frmKorisnici_Load(object sender, EventArgs e) { }
 
         private async void btnShow_Click(object sender, EventArgs e) {
             var searchObject = new KorisniciSearchObject();
@@ -27,6 +27,15 @@ namespace eProdaja.WinUI {
             searchObject.IncludeRoles = true;
             var list = await KorisniciService.Get<List<Korisnici>>(searchObject);
             dgvKorisnici.DataSource = list;
+        }
+
+        private void dgvKorisnici_CellDoubleClick(object sender, DataGridViewCellEventArgs e) {
+            var item = dgvKorisnici.SelectedRows[0].DataBoundItem as Korisnici;
+            if (item != null) {
+                frmKorisniciDetails forma = new frmKorisniciDetails(item);
+                forma.ShowDialog();
+            }
+
         }
     }
 }

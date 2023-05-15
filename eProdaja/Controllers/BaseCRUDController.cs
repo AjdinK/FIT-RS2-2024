@@ -11,7 +11,7 @@ namespace eProdaja.Controllers {
             var rez = ((ICRUDService<T, TSearch, TInsert, TUpdate>)this.Service).Insert(insert);
             return rez;}
 
-        [HttpPut("id")]
+        [HttpPut("{id}")]
         public virtual T Update(int id , [FromBody] TUpdate update) {
             var rez = ((ICRUDService<T, TSearch, TInsert, TUpdate>)this.Service).Update(id, update);
             return rez;}

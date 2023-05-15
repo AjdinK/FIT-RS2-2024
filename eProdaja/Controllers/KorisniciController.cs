@@ -17,7 +17,7 @@ namespace eProdaja.Controllers {
             return base.Insert(insert);
         }
 
-       // [Authorize("Adminstrator")]
+       //[Authorize("Adminstrator")]
         public override Korisnici Update(int id, [FromBody] KorisniciUpdateRequest update) {
             return base.Update(id, update);
         }

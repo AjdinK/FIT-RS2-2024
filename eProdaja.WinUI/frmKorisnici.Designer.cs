@@ -24,15 +24,15 @@
         /// </summary>
         private void InitializeComponent() {
             dgvKorisnici = new DataGridView();
+            Ime = new DataGridViewTextBoxColumn();
+            Prezime = new DataGridViewTextBoxColumn();
+            RoleNames = new DataGridViewTextBoxColumn();
+            Status = new DataGridViewCheckBoxColumn();
             btnShow = new Button();
             txtUsername = new TextBox();
             label1 = new Label();
             label2 = new Label();
             txtName = new TextBox();
-            Ime = new DataGridViewTextBoxColumn();
-            Prezime = new DataGridViewTextBoxColumn();
-            RoleNames = new DataGridViewTextBoxColumn();
-            Status = new DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dgvKorisnici).BeginInit();
             SuspendLayout();
             // 
@@ -46,8 +46,41 @@
             dgvKorisnici.Name = "dgvKorisnici";
             dgvKorisnici.ReadOnly = true;
             dgvKorisnici.RowTemplate.Height = 25;
+            dgvKorisnici.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvKorisnici.Size = new Size(749, 307);
             dgvKorisnici.TabIndex = 0;
+            dgvKorisnici.CellDoubleClick += dgvKorisnici_CellDoubleClick;
+            // 
+            // Ime
+            // 
+            Ime.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Ime.DataPropertyName = "Ime";
+            Ime.HeaderText = "Ime";
+            Ime.Name = "Ime";
+            Ime.ReadOnly = true;
+            // 
+            // Prezime
+            // 
+            Prezime.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Prezime.DataPropertyName = "Prezime";
+            Prezime.HeaderText = "Prezime korisnika";
+            Prezime.Name = "Prezime";
+            Prezime.ReadOnly = true;
+            // 
+            // RoleNames
+            // 
+            RoleNames.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            RoleNames.DataPropertyName = "RoleNames";
+            RoleNames.HeaderText = "Uloge";
+            RoleNames.Name = "RoleNames";
+            RoleNames.ReadOnly = true;
+            // 
+            // Status
+            // 
+            Status.DataPropertyName = "Status";
+            Status.HeaderText = "Status";
+            Status.Name = "Status";
+            Status.ReadOnly = true;
             // 
             // btnShow
             // 
@@ -90,37 +123,6 @@
             txtName.Name = "txtName";
             txtName.Size = new Size(175, 23);
             txtName.TabIndex = 4;
-            // 
-            // Ime
-            // 
-            Ime.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Ime.DataPropertyName = "Ime";
-            Ime.HeaderText = "Ime";
-            Ime.Name = "Ime";
-            Ime.ReadOnly = true;
-            // 
-            // Prezime
-            // 
-            Prezime.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Prezime.DataPropertyName = "Prezime";
-            Prezime.HeaderText = "Prezime korisnika";
-            Prezime.Name = "Prezime";
-            Prezime.ReadOnly = true;
-            // 
-            // RoleNames
-            // 
-            RoleNames.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            RoleNames.DataPropertyName = "RoleNames";
-            RoleNames.HeaderText = "Uloge";
-            RoleNames.Name = "RoleNames";
-            RoleNames.ReadOnly = true;
-            // 
-            // Status
-            // 
-            Status.DataPropertyName = "Status";
-            Status.HeaderText = "Status";
-            Status.Name = "Status";
-            Status.ReadOnly = true;
             // 
             // frmKorisnici
             // 

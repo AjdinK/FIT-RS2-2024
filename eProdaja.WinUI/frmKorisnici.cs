@@ -21,6 +21,7 @@ namespace eProdaja.WinUI {
             var searchObject = new KorisniciSearchObject();
             searchObject.KorisnickoIme = txtUsername.Text;
             searchObject.NameFTS = txtName.Text;
+            searchObject.IncludeRoles = true;
             var list = await KorisniciService.Get<List<Korisnici>>(searchObject);
             dgvKorisnici.DataSource = list;
         }

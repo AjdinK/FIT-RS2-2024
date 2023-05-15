@@ -73,6 +73,12 @@ namespace eProdaja.Services {
             }
             return filterQuery;
         }
+        public override IQueryable<Korisnici> AddInclude(IQueryable<Korisnici> query, KorisniciSearchObject search = null) {
+            if (search?.IncludeRoles == true) { 
+                query = query.Include("KorisniciUloges.Uloga");
+            }
+            return query;
+        }
 
         public Model.Korisnici Login(string name, string password) {
             var entitiy = Context.Korisnicis.Include("KorisniciUloges.Uloga").FirstOrDefault(x => x.KorisnickoIme == name);

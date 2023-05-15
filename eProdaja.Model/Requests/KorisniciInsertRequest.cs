@@ -16,6 +16,7 @@ namespace eProdaja.Model.Requests {
         public string KorisnickoIme { get; set; }
 
         public string Password { get; set; }
+        public string PasswordPotvrda { get; set; }
 
         public bool? Status { get; set; }
 

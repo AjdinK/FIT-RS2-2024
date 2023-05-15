@@ -14,8 +14,11 @@ namespace eProdaja.WinUI {
     public partial class frmKorisnici : Form {
         public APIService KorisniciService { get; set; } = new APIService("Korisnici");
 
-        public frmKorisnici() { InitializeComponent(); }
-        private void frmKorisnici_Load(object sender, EventArgs e) { }
+        public frmKorisnici() { 
+            InitializeComponent();
+            dgvKorisnici.AutoGenerateColumns = false;
+        }
+        private void frmKorisnici_Load(object sender, EventArgs e) {}
 
         private async void btnShow_Click(object sender, EventArgs e) {
             var searchObject = new KorisniciSearchObject();

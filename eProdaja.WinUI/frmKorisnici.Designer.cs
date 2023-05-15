@@ -29,14 +29,22 @@
             label1 = new Label();
             label2 = new Label();
             txtName = new TextBox();
+            Ime = new DataGridViewTextBoxColumn();
+            Prezime = new DataGridViewTextBoxColumn();
+            RoleNames = new DataGridViewTextBoxColumn();
+            Status = new DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dgvKorisnici).BeginInit();
             SuspendLayout();
             // 
             // dgvKorisnici
             // 
+            dgvKorisnici.AllowUserToAddRows = false;
+            dgvKorisnici.AllowUserToDeleteRows = false;
             dgvKorisnici.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvKorisnici.Columns.AddRange(new DataGridViewColumn[] { Ime, Prezime, RoleNames, Status });
             dgvKorisnici.Location = new Point(12, 114);
             dgvKorisnici.Name = "dgvKorisnici";
+            dgvKorisnici.ReadOnly = true;
             dgvKorisnici.RowTemplate.Height = 25;
             dgvKorisnici.Size = new Size(749, 307);
             dgvKorisnici.TabIndex = 0;
@@ -83,6 +91,37 @@
             txtName.Size = new Size(175, 23);
             txtName.TabIndex = 4;
             // 
+            // Ime
+            // 
+            Ime.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Ime.DataPropertyName = "Ime";
+            Ime.HeaderText = "Ime";
+            Ime.Name = "Ime";
+            Ime.ReadOnly = true;
+            // 
+            // Prezime
+            // 
+            Prezime.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Prezime.DataPropertyName = "Prezime";
+            Prezime.HeaderText = "Prezime korisnika";
+            Prezime.Name = "Prezime";
+            Prezime.ReadOnly = true;
+            // 
+            // RoleNames
+            // 
+            RoleNames.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            RoleNames.DataPropertyName = "RoleNames";
+            RoleNames.HeaderText = "Uloge";
+            RoleNames.Name = "RoleNames";
+            RoleNames.ReadOnly = true;
+            // 
+            // Status
+            // 
+            Status.DataPropertyName = "Status";
+            Status.HeaderText = "Status";
+            Status.Name = "Status";
+            Status.ReadOnly = true;
+            // 
             // frmKorisnici
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -110,5 +149,9 @@
         private Label label1;
         private Label label2;
         private TextBox txtName;
+        private DataGridViewTextBoxColumn Ime;
+        private DataGridViewTextBoxColumn Prezime;
+        private DataGridViewTextBoxColumn RoleNames;
+        private DataGridViewCheckBoxColumn Status;
     }
 }

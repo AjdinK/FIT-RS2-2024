@@ -24,12 +24,12 @@
         /// </summary>
         private void InitializeComponent() {
             groupBox1 = new GroupBox();
+            txtEmail = new TextBox();
             txtPrezime = new TextBox();
             txtIme = new TextBox();
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
-            txtEmail = new TextBox();
             groupBox2 = new GroupBox();
             txtPasswordConf = new TextBox();
             txtPassword = new TextBox();
@@ -58,6 +58,13 @@
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Podaci";
+            // 
+            // txtEmail
+            // 
+            txtEmail.Location = new Point(114, 102);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(255, 23);
+            txtEmail.TabIndex = 5;
             // 
             // txtPrezime
             // 
@@ -99,13 +106,6 @@
             label1.Size = new Size(27, 15);
             label1.TabIndex = 0;
             label1.Text = "Ime";
-            // 
-            // txtEmail
-            // 
-            txtEmail.Location = new Point(114, 102);
-            txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(255, 23);
-            txtEmail.TabIndex = 5;
             // 
             // groupBox2
             // 
@@ -157,7 +157,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(16, 75);
+            label5.Location = new Point(19, 70);
             label5.Name = "label5";
             label5.Size = new Size(57, 15);
             label5.TabIndex = 1;
@@ -166,7 +166,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(16, 45);
+            label6.Location = new Point(16, 40);
             label6.Name = "label6";
             label6.Size = new Size(60, 15);
             label6.TabIndex = 0;
@@ -198,6 +198,7 @@
             btnSacuvaj.TabIndex = 9;
             btnSacuvaj.Text = "Sacuvaj";
             btnSacuvaj.UseVisualStyleBackColor = true;
+            btnSacuvaj.Click += btnSacuvaj_Click;
             // 
             // frmKorisniciDetails
             // 
@@ -212,6 +213,7 @@
             Name = "frmKorisniciDetails";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmKorisniciDetails";
+            Load += frmKorisniciDetails_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);

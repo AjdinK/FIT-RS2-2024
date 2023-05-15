@@ -33,7 +33,8 @@ builder.Services.AddTransient<IKorisniciService, KorisniciService>();
 builder.Services.AddTransient<IJediniceMjereService, JediniceMjereService>();
 builder.Services.AddTransient<IProizvodiService,ProizvodiService>();
 builder.Services.AddTransient<IVrsteProizvodumService, VrsteProizvodumService>();
-
+builder.Services.AddTransient<IService<eProdaja.Model.Uloge, BaseSearchObject>,
+BaseService<eProdaja.Model.Uloge, Uloge, BaseSearchObject>>();
 builder.Services.AddTransient<BaseState>();
 builder.Services.AddTransient<InitialProductState>();
 builder.Services.AddTransient<DraftProductState>();

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using eProdaja.DataBase;
+using eProdaja.Model;
 using eProdaja.Model.Requests;
 using eProdaja.Model.SearchObjects;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,9 @@ namespace eProdaja.Services {
 
         public override Model.Korisnici Insert(KorisniciInsertRequest insert) {
 
+            if (insert.Password != insert.PasswordPotvrda) {
+                throw new UserException (" Password and confirmation must be the same");}
+
             var entity = base.Insert(insert);
 
             foreach (var ulogaId in insert.UlogeIdList) {
@@ -30,7 +34,7 @@ namespace eProdaja.Services {
             Context.SaveChanges();
             return entity;}
 
-        public override void BeforeInsert(KorisniciInsertRequest insert, Korisnici entity) {
+        public override void BeforeInsert(KorisniciInsertRequest insert, DataBase.Korisnici entity) {
             var salt = GenerateSalt();
             entity.LozinkaSalt = salt;
             entity.LozinkaHash = GenerateHash(salt, insert.Password);
@@ -38,6 +42,9 @@ namespace eProdaja.Services {
             base.BeforeInsert(insert, entity);
         }
         public override Model.Korisnici Update(int id, KorisniciUpdateRequest update) {
+            if (update.Password != update.PasswordPotvrda) {
+                throw new UserException("Password and confirmation must be the same");}
+
             return base.Update(id, update);
         }
 
@@ -61,7 +68,7 @@ namespace eProdaja.Services {
             return Convert.ToBase64String(inArray);
         }
 
-        public override IQueryable<Korisnici> AddFilter(IQueryable<Korisnici> query, KorisniciSearchObject search = null) {
+        public override IQueryable<DataBase.Korisnici> AddFilter(IQueryable<DataBase.Korisnici> query, KorisniciSearchObject search = null) {
             var filterQuery = base.AddFilter(query, search);
 
             if (!string.IsNullOrWhiteSpace(search?.KorisnickoIme)) {
@@ -73,7 +80,7 @@ namespace eProdaja.Services {
             }
             return filterQuery;
         }
-        public override IQueryable<Korisnici> AddInclude(IQueryable<Korisnici> query, KorisniciSearchObject search = null) {
+        public override IQueryable<DataBase.Korisnici> AddInclude(IQueryable<DataBase.Korisnici> query, KorisniciSearchObject search = null) {
             if (search?.IncludeRoles == true) { 
                 query = query.Include("KorisniciUloges.Uloga");
             }

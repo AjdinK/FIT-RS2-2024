@@ -1,4 +1,5 @@
 using eProdaja.DataBase;
+using eProdaja.Filters;
 using eProdaja.Model.ProductStateMachine;
 using eProdaja.Model.Requests;
 using eProdaja.Model.SearchObjects;
@@ -12,8 +13,8 @@ using Microsoft.OpenApi.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddControllers(x => x.Filters.Add<ErrorFilter>()).AddNewtonsoftJson();
 
-builder.Services.AddControllers().AddNewtonsoftJson();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c => {

@@ -43,7 +43,7 @@ namespace eProdaja.Services {
         }
         public override Model.Korisnici Update(int id, KorisniciUpdateRequest update) {
             if (update.Password != update.PasswordPotvrda) {
-                throw new UserException("Password and confirmation must be the same");}
+                throw new UserException(" Password and confirmation must be the same");}
 
             return base.Update(id, update);
         }

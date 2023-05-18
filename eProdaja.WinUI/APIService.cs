@@ -35,16 +35,28 @@ namespace eProdaja.WinUI {
                 var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
                 var stringBuilder = new StringBuilder();
                 foreach (var error in errors) {
-                    stringBuilder.AppendLine($"{error.Key},{string.Join(", ", error.Value)}");
+                    stringBuilder.AppendLine($"{error.Key},{string.Join(":", error.Value)}");
                 }
                 MessageBox.Show(stringBuilder.ToString(),
-                    "Greska : ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return default(T);
             } 
         }
         public async Task<T> Put<T>(object id , object request) {
-            var rez = await $"{_endpoint}{_resoruce}/{id}".WithBasicAuth(username, password).PutJsonAsync(request).ReceiveJson<T>();
-            return rez;
+            try {
+                var rez = await $"{_endpoint}{_resoruce}/{id}".WithBasicAuth(username, password).PutJsonAsync(request).ReceiveJson<T>();
+                return rez;
+            }
+             catch (FlurlHttpException ex) {
+                var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
+                var stringBuilder = new StringBuilder();
+                foreach (var error in errors) {
+                    stringBuilder.AppendLine($"{error.Key},{string.Join(":", error.Value)}");
+                }
+                MessageBox.Show(stringBuilder.ToString(),
+                    "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return default(T);
+            }
         }
     }
 }

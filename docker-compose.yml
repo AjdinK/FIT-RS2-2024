@@ -6,7 +6,7 @@ services:
     restart: unless-stopped
     environment:
       - ACCEPT_EULA=Y
-      - SA_PASSWORD=${SQL_PASSWORD}
+      - SA_PASSWORD=QWElkj132!
       - MSSQL_PID=Developer
     ports:
       - 1401:1433
@@ -20,7 +20,7 @@ services:
     build:
       context: .
     environment:
-      - ConnectionStrings:DefaultConnection=Server=eprodaja-sql,1433;Database=eProdajaVjezbe;User=sa;Password=${SQL_PASSWORD};ConnectRetryCount=0
+      - ConnectionStrings:DefaultConnection=Server=eprodaja-sql,1433;Database=eProdajaVjezbe;User=sa;Password=QWElkj132!;ConnectRetryCount=0
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - 1436:1436

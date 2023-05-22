@@ -60,4 +60,8 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+using (var scope = app.Services.CreateScope()) {
+    var dataContext = scope.ServiceProvider.GetRequiredService<EProdajaContext>();
+    dataContext.Database.Migrate();
+}
 app.Run();

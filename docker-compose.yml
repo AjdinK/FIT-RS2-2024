@@ -6,24 +6,24 @@ services:
     restart: unless-stopped
     environment:
       - ACCEPT_EULA=Y
-      - SA_PASSWORD=<YourStrong@Passw0rd>
+      - SA_PASSWORD=QWElkj132!
       - MSSQL_PID=Developer
     ports:
-      - 1433:1433
+      - 1401:1433
     expose:
         - 1433
     networks:
       - eprodajanet2022
 
-  eprodaja-api2023:
+  eprodaja-api:
     restart: unless-stopped
     build:
       context: .
     environment:
-      - ConnectionStrings:server=localhost,1433;user=sa;password=<YourStrong@Passw0rd>;database=eProdaja;Trusted_connection=true;trustservercertificate=true;Integrated Security=false;ConnectRetryCount=0
+      - ConnectionStrings:DefaultConnection=Server=eprodaja-sql,1433;Database=eProdajaVjezbe;User=sa;Password=QWElkj132!;ConnectRetryCount=0
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - 5192:5192
+      - 1436:1436
     networks:
       - eprodajanet2022
     links:
@@ -33,4 +33,4 @@ services:
       
 networks:
   eprodajanet2022:
-    driver: bridge     
+    driver: bridge  

@@ -58,42 +58,47 @@ namespace eProdaja.Services {
         /*https://github.com/dotnet/machinelearning-samples/
          * tree/main/samples/csharp/getting-started/MatrixFactorization_ProductRecommendation
          */
+        static MLContext mlContext = null;
+        static ITransformer model = null;
         public List<Model.Proizvodi> Recommend(int id) {
-            MLContext mlContext = new MLContext();
-            var tmpData = Context.Narudzbes.Include("NarudzbaStavkes").ToList();
-            var data = new List<ProductEntry>();
+             
+            if (mlContext == null) {
 
-            foreach (var x in tmpData) {
-                if (x.NarudzbaStavkes.Count > 1) {
-                    var distinctItemId = x.NarudzbaStavkes.Select(y => y.ProizvodId).ToList();
-                    distinctItemId.ForEach(y => {
-                        var relatedItem = x.NarudzbaStavkes.Where(z => z.ProizvodId != y);
-                        foreach (var z in relatedItem) {
-                            data.Add(new ProductEntry() { 
-                            ProductID = (uint)y,
-                            CoPurchaseProductID = (uint)z.ProizvodId
-                            }); 
-                        }
-                    });
+                mlContext = new MLContext();
+                var tmpData = Context.Narudzbes.Include("NarudzbaStavkes").ToList();
+                var data = new List<ProductEntry>();
+
+                foreach (var x in tmpData) {
+                    if (x.NarudzbaStavkes.Count > 1) {
+                        var distinctItemId = x.NarudzbaStavkes.Select(y => y.ProizvodId).ToList();
+                        distinctItemId.ForEach(y => {
+                            var relatedItem = x.NarudzbaStavkes.Where(z => z.ProizvodId != y);
+                            foreach (var z in relatedItem) {
+                                data.Add(new ProductEntry() {
+                                    ProductID = (uint)y,
+                                    CoPurchaseProductID = (uint)z.ProizvodId
+                                });
+                            }
+                        });
+                    }
                 }
+                var traindata = mlContext.Data.LoadFromEnumerable(data);
+
+                MatrixFactorizationTrainer.Options options = new MatrixFactorizationTrainer.Options();
+                options.MatrixColumnIndexColumnName = nameof(ProductEntry.ProductID);
+                options.MatrixRowIndexColumnName = nameof(ProductEntry.CoPurchaseProductID);
+                options.LabelColumnName = "Label";
+                options.LossFunction = MatrixFactorizationTrainer.LossFunctionType.SquareLossOneClass;
+                options.Alpha = 0.01;
+                options.Lambda = 0.025;
+                options.NumberOfIterations = 100;
+                options.C = 0.00001;
+
+                var est = mlContext.Recommendation().Trainers.MatrixFactorization(options);
+                model = est.Fit(traindata);
             }
-            var traindata = mlContext.Data.LoadFromEnumerable(data);
-
-            MatrixFactorizationTrainer.Options options = new MatrixFactorizationTrainer.Options();
-            options.MatrixColumnIndexColumnName = nameof(ProductEntry.ProductID);
-            options.MatrixRowIndexColumnName = nameof(ProductEntry.CoPurchaseProductID);
-            options.LabelColumnName = "Label";
-            options.LossFunction = MatrixFactorizationTrainer.LossFunctionType.SquareLossOneClass;
-            options.Alpha = 0.01;
-            options.Lambda = 0.025;
-            options.NumberOfIterations = 100;
-            options.C = 0.00001;
-
-            var est = mlContext.Recommendation().Trainers.MatrixFactorization(options);
-            ITransformer model = est.Fit(traindata);
 
             var predictionResults = new List<Tuple<DataBase.Proizvodi,float>>();
-
             var allItems = Context.Proizvodis.Where(x => x.ProizvodId != id);
             foreach (var item in allItems) {
                 var predictionEngine = mlContext.Model.

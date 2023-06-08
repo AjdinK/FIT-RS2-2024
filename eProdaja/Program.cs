@@ -30,6 +30,7 @@ builder.Services.AddSwaggerGen(c => {
 
 //builder.Services.AddSingleton<IProizvodiService, ProizvodiService>();
 
+builder.Services.AddTransient<INarudzbeService, NarudzbeService>();
 builder.Services.AddTransient<IKorisniciService, KorisniciService>();
 builder.Services.AddTransient<IJediniceMjereService, JediniceMjereService>();
 builder.Services.AddTransient<IProizvodiService,ProizvodiService>();

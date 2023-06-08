@@ -1,4 +1,5 @@
-﻿using eProdaja.Model;
+﻿
+using eProdaja.Model;
 using eProdaja.Model.Requests;
 using eProdaja.Model.SearchObjects;
 using System;
@@ -8,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace eProdaja.Services {
-    public interface INaruzbeService : ICRUDService<Naruzbe, NaruzbeSearchObject, NaruzbaInsertRequest, NaruzbaUpdateRequest> {
-        Model.Naruzbe Insert(NaruzbaInsertRequest insert);
+    public interface INarudzbeService : ICRUDService<Narudzbe, BaseSearchObject, NarudzbaInsertRequest, NarudzbaUpdateRequest> {
+
     }
 }

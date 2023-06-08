@@ -21,7 +21,7 @@ namespace eProdaja.Services {
             var state = BaseState.CreateState("initial");
             return state.Insert(insert);
         }
-
+         
         public override Model.Proizvodi Update(int id, ProizvodiUpdateRequest update) {
             var product = Context.Proizvodis.Find(id);
             var state = BaseState.CreateState(product.StateMachine);

@@ -22,6 +22,9 @@ namespace eProdaja.Services {
             CreateMap<KorisniciUpdateRequest, DataBase.Korisnici>();
             CreateMap<DataBase.Uloge, Model.Uloge>();
             CreateMap<DataBase.KorisniciUloge, Model.KorisniciUloge>();
+            CreateMap<DataBase.Narudzbe, Model.Narudzbe>();
+            CreateMap<NarudzbaInsertRequest, DataBase.Narudzbe>();
+            CreateMap<NarudzbaUpdateRequest, DataBase.Narudzbe>();
         }
     }
 }

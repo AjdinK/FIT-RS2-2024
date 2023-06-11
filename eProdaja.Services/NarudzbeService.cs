@@ -22,16 +22,14 @@ namespace eProdaja.Services {
 
         public override Model.Narudzbe Insert(NarudzbaInsertRequest insert) {
             var result = base.Insert(insert);
+
             foreach (var item in insert.Items) {
-                //call context to store items
                 DataBase.NarudzbaStavke dbItem = new NarudzbaStavke();
                 dbItem.NarudzbaId = result.NarudzbaId;
                 dbItem.ProizvodId = item.ProizvodId;
                 dbItem.Kolicina = item.Kolicina;
-
                 Context.NarudzbaStavkes.Add(dbItem);
             }
-
             Context.SaveChanges();
             return result;
         }

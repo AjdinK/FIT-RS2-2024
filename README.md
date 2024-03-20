@@ -1,4 +1,4 @@
-# FIT-RS2-2023
+# FIT-RS2-2024
 Vjezbe iz Razvoj softvera II
 _____________________________________
 

@@ -7,8 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 //// Add services to the container.
 //builder.Services.AddTransient<IProizvodiService, ProizvodiService>();
-builder.Services.AddTransient<IProizvodiService, ProizvodiService>();
 //builder.Services.AddSingleton<IProizvodiService, DummyProizvodiService>();
+builder.Services.AddTransient<IProizvodiService, ProizvodiService>();
 builder.Services.AddTransient<IKorisniciService, KorisniciService>();
 
 builder.Services.AddControllers();
@@ -32,9 +32,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();

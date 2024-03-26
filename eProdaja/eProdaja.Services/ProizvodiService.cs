@@ -15,7 +15,7 @@ namespace eProdaja.Services
             Context = context;
         }
 
-        public virtual  List<Model.Proizvodi> GetList()
+        public virtual List<Model.Proizvodi> GetList()
         {
             var list = Context.Proizvodis.ToList();
             var result = new List<Model.Proizvodi>();
@@ -28,5 +28,6 @@ namespace eProdaja.Services
             });
             return result;
         }
+
     }
 }

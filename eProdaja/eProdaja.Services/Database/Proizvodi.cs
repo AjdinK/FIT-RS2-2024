@@ -23,7 +23,7 @@ public partial class Proizvodi
 
     public bool? Status { get; set; }
 
-    public string? StateMachine { get; set; }
+   // public string? StateMachine { get; set; }
 
     public virtual ICollection<IzlazStavke> IzlazStavkes { get; set; } = new List<IzlazStavke>();
 

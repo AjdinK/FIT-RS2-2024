@@ -7,7 +7,6 @@ namespace eProdaja.Model.Requests
     public class KorisniciUpdateRequest
     {
         public string Ime { get; set; } = null!;
-
         public string Prezime { get; set; } = null!;
 
         public string? Telefon { get; set; }

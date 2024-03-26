@@ -23,11 +23,8 @@ namespace eProdaja.Services
         public virtual  List <Model.Korisnici> GetList()
         {
             List<Model.Korisnici> result = new List<Model.Korisnici>();
-
             var list = Context.Korisnicis.ToList();
-
             result = Mapper.Map(list, result);
-
             return result;
         }
 
@@ -46,13 +43,12 @@ namespace eProdaja.Services
 
             Context.Add(entity);
             Context.SaveChanges();
-
             return Mapper.Map<Model.Korisnici>(entity);
         }
+
         public Model.Korisnici Update(int id, KorisniciUpdateRequest request)
         {
             var entity = Context.Korisnicis.Find(id);
-
             Mapper.Map(request, entity);
 
             if (request.Lozinka != null)

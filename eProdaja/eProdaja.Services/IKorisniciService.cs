@@ -10,9 +10,8 @@ namespace eProdaja.Services
 {
     public interface IKorisniciService
     {
-        List<Korisnici> GetList();
+        List <Korisnici> GetList();
         Korisnici Insert(KorisniciInsertRequest request);
-
         Korisnici Update(int id, KorisniciUpdateRequest request);
     }
 }

@@ -17,7 +17,6 @@ namespace eProdaja.Model
 
         public string KorisnickoIme { get; set; } = null!;
 
-
         public bool? Status { get; set; }
 
         //public virtual ICollection<KorisniciUloge> KorisniciUloges { get; set; } = new List<KorisniciUloge>();

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace eProdaja.Services
 {
-    public class BaseService<TModel, TSearch, TDbEntity> : IService<TModel, TSearch> where TSearch: BaseSearchObject where TDbEntity : class where TModel: class
+    public class BaseService<TModel, TSearch, TDbEntity> : IService<TModel, TSearch> where TSearch : BaseSearchObject where TDbEntity : class where TModel : class
     {
         public EProdajaContext Context { get; set; }
         public IMapper Mapper { get; set; }
@@ -53,9 +53,9 @@ namespace eProdaja.Services
 
         public TModel GetById(int id)
         {
-           var entity = Context.Set<TDbEntity>().Find(id);
-            
-            if(entity != null)
+            var entity = Context.Set<TDbEntity>().Find(id);
+
+            if (entity != null)
             {
                 return Mapper.Map<TModel>(entity);
             }
@@ -63,7 +63,7 @@ namespace eProdaja.Services
             {
                 return null;
             }
-           
+
         }
     }
 }

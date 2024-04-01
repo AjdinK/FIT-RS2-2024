@@ -10,21 +10,23 @@ using System.Threading.Tasks;
 
 namespace eProdaja.Services
 {
-    public class ProizvodiService : BaseService<Model.Proizvodi, ProizvodiSearchObject, Database.Proizvodi>, IProizvodiService
+    public class ProizvodiService : BaseService<Model.Proizvodi,
+     ProizvodiSearchObject, Database.Proizvodi>, IProizvodiService
     {
-        public ProizvodiService(EProdajaContext context, IMapper mapper) 
-        : base(context, mapper) { 
+        public ProizvodiService(EProdajaContext context, IMapper mapper)
+        : base(context, mapper)
+        {
         }
 
-        public override IQueryable<Database.Proizvodi> AddFilter(ProizvodiSearchObject search, IQueryable<Database.Proizvodi> query)
+        public override IQueryable<Database.Proizvodi>
+        AddFilter(ProizvodiSearchObject search, IQueryable<Database.Proizvodi> query)
         {
             var filteredQuery = base.AddFilter(search, query);
 
-            if(!string.IsNullOrWhiteSpace(search?.FTS))
+            if (!string.IsNullOrWhiteSpace(search?.FTS))
             {
                 filteredQuery = filteredQuery.Where(x => x.Naziv.Contains(search.FTS));
             }
-
             return filteredQuery;
         }
     }

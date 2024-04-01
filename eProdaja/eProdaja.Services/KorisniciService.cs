@@ -19,18 +19,19 @@ namespace eProdaja.Services
     {
         public EProdajaContext Context { get; set; }
         public IMapper Mapper { get; set; }
-        public KorisniciService(EProdajaContext context, IMapper mapper) { 
+        public KorisniciService(EProdajaContext context, IMapper mapper)
+        {
             Context = context;
             Mapper = mapper;
         }
 
-        public virtual  PagedResult<Model.Korisnici> GetList(KorisniciSearchObject searchObject)
+        public virtual PagedResult<Model.Korisnici> GetList(KorisniciSearchObject searchObject)
         {
             List<Model.Korisnici> result = new List<Model.Korisnici>();
 
             var query = Context.Korisnicis.AsQueryable();
 
-            if(!string.IsNullOrWhiteSpace(searchObject?.ImeGTE))
+            if (!string.IsNullOrWhiteSpace(searchObject?.ImeGTE))
             {
                 query = query.Where(x => x.Ime.StartsWith(searchObject.ImeGTE));
             }
@@ -102,23 +103,19 @@ namespace eProdaja.Services
             //            query = query.OrderByDescending(x => x.Ime);
             //            break;
             //    }
-                    
-                
+
+
             //}
 
 
 
             var list = query.ToList();
-
-           var resultList = Mapper.Map(list, result);
-
+            var resultList = Mapper.Map(list, result);
             PagedResult<Model.Korisnici> response = new PagedResult<Model.Korisnici>();
 
             response.ResultList = resultList;
             response.Count = count;
-
             return response;
-
         }
 
         public Model.Korisnici Insert(KorisniciInsertRequest request)
@@ -144,8 +141,6 @@ namespace eProdaja.Services
         public static string GenerateSalt()
         {
             var byteArray = RNGCryptoServiceProvider.GetBytes(16);
-
-
             return Convert.ToBase64String(byteArray);
         }
         public static string GenerateHash(string salt, string password)
@@ -180,7 +175,6 @@ namespace eProdaja.Services
             }
 
             Context.SaveChanges();
-
             return Mapper.Map<Model.Korisnici>(entity);
         }
     }

@@ -111,8 +111,8 @@ namespace eProdaja.Services
 
             var list = query.ToList();
             var resultList = Mapper.Map(list, result);
-            PagedResult<Model.Korisnici> response = new PagedResult<Model.Korisnici>();
 
+            PagedResult<Model.Korisnici> response = new PagedResult<Model.Korisnici>();
             response.ResultList = resultList;
             response.Count = count;
             return response;

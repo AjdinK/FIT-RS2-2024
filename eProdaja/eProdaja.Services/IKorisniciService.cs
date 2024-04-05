@@ -13,7 +13,6 @@ namespace eProdaja.Services
     {
         PagedResult<Korisnici> GetList(KorisniciSearchObject searchObject);
         Korisnici Insert(KorisniciInsertRequest request);
-
         Korisnici Update(int id, KorisniciUpdateRequest request);
     }
 }

@@ -14,9 +14,7 @@ namespace eProdaja.Services
      ProizvodiSearchObject, Database.Proizvodi>, IProizvodiService
     {
         public ProizvodiService(EProdajaContext context, IMapper mapper)
-        : base(context, mapper)
-        {
-        }
+        : base(context, mapper) { }
 
         public override IQueryable<Database.Proizvodi>
         AddFilter(ProizvodiSearchObject search, IQueryable<Database.Proizvodi> query)

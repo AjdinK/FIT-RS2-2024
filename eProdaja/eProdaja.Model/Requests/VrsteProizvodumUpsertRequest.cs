@@ -2,13 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace eProdaja.Model
+namespace eProdaja.Model.Requests
 {
-    public partial class VrsteProizvodum
+    public partial class VrsteProizvodumUpsertRequest
     {
-        public int VrstaId { get; set; }
-
         public string Naziv { get; set; } = null!;
     }
-
 }

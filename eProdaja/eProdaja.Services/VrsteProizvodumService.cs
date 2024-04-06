@@ -12,10 +12,6 @@ namespace eProdaja.Services
 {
     public class VrsteProizvodumService : BaseService<Model.VrsteProizvodum, VrsteProizvodumSearchObject, Database.VrsteProizvodum>, IVrsteProizvodumService
     {
-
-        public VrsteProizvodumService(EProdajaContext context, IMapper mapper)
-        : base(context, mapper){ 
-
-        }
+        public VrsteProizvodumService(EProdajaContext context, IMapper mapper) : base(context, mapper) { }
     }
 }

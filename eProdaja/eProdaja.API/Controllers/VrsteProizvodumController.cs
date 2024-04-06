@@ -9,10 +9,6 @@ namespace eProdaja.API.Controllers
     [Route("[controller]")]
     public class VrsteProizvodumController : BaseController<VrsteProizvodum, VrsteProizvodumSearchObject>
     {
-        
-        public VrsteProizvodumController(IVrsteProizvodumService service)
-        : base(service) {
-        }
-
+        public VrsteProizvodumController(IVrsteProizvodumService service) : base(service) { }
     }
 }

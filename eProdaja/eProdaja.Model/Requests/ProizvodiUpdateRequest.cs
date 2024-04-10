@@ -22,7 +22,6 @@ namespace eProdaja.Model.Requests
 
         //public string? StateMachine { get; set; }
 
-       
     }
 
 }

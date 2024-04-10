@@ -10,9 +10,7 @@ namespace eProdaja.API.Controllers
     [Route("[controller]")]
     public class ProizvodiController : BaseCRUDController<Proizvodi, ProizvodiSearchObject, ProizvodiInsertRequest, ProizvodiUpdateRequest>
     {
-
-        public ProizvodiController(IProizvodiService service)
-        : base(service) { }
+        public ProizvodiController(IProizvodiService service) : base(service) { }
 
         [HttpPut("{id}/activate")]
         public Proizvodi Activate(int id)

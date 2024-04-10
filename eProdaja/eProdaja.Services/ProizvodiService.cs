@@ -13,11 +13,14 @@ using System.Threading.Tasks;
 
 namespace eProdaja.Services
 {
-    public class ProizvodiService : BaseCRUDService<Model.Proizvodi, ProizvodiSearchObject, Database.Proizvodi, ProizvodiInsertRequest, ProizvodiUpdateRequest>, IProizvodiService
+    public class ProizvodiService :
+    BaseCRUDService<Model.Proizvodi, ProizvodiSearchObject, Database.Proizvodi, ProizvodiInsertRequest, ProizvodiUpdateRequest>,
+    IProizvodiService
     {
         public BaseProizvodiState BaseProizvodiState { get; set; }
-        public ProizvodiService(EProdajaContext context, IMapper mapper, BaseProizvodiState baseProizvodiState) 
-        : base(context, mapper) { 
+        public ProizvodiService(EProdajaContext context, IMapper mapper, BaseProizvodiState baseProizvodiState)
+        : base(context, mapper)
+        {
             BaseProizvodiState = baseProizvodiState;
         }
 
@@ -25,7 +28,7 @@ namespace eProdaja.Services
         {
             var filteredQuery = base.AddFilter(search, query);
 
-            if(!string.IsNullOrWhiteSpace(search?.FTS))
+            if (!string.IsNullOrWhiteSpace(search?.FTS))
             {
                 filteredQuery = filteredQuery.Where(x => x.Naziv.Contains(search.FTS));
             }

@@ -1,7 +1,6 @@
 ﻿using eProdaja.Model.Requests;
 using eProdaja.Services.Database;
 using MapsterMapper;
-
 using Microsoft.Extensions.DependencyInjection;
 
 namespace eProdaja.Services.ProizvodiStateMachine
@@ -15,7 +14,7 @@ namespace eProdaja.Services.ProizvodiStateMachine
         public BaseProizvodiState(EProdajaContext context, IMapper mapper, IServiceProvider serviceProvider)
         {
             Context = context;
-            Mapper = mapper; 
+            Mapper = mapper;
             ServiceProvider = serviceProvider;
         }
         public virtual Model.Proizvodi Insert(ProizvodiInsertRequest request)
@@ -48,7 +47,7 @@ namespace eProdaja.Services.ProizvodiStateMachine
                     return ServiceProvider.GetService<DraftProizvodiState>();
                 case "active":
                     return ServiceProvider.GetService<ActiveProizvodiState>();
-                default : throw new Exception("State not recognized");
+                default: throw new Exception("State not recognized");
             }
         }
     }

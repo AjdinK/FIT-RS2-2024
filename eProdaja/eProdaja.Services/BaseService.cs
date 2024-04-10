@@ -63,7 +63,6 @@ namespace eProdaja.Services
             {
                 return null;
             }
-
         }
     }
 }

@@ -19,10 +19,7 @@ namespace eProdaja.Services
     {
         public BaseProizvodiState BaseProizvodiState { get; set; }
         public ProizvodiService(EProdajaContext context, IMapper mapper, BaseProizvodiState baseProizvodiState)
-        : base(context, mapper)
-        {
-            BaseProizvodiState = baseProizvodiState;
-        }
+        : base(context, mapper) { BaseProizvodiState = baseProizvodiState; }
 
         public override IQueryable<Database.Proizvodi> AddFilter(ProizvodiSearchObject search, IQueryable<Database.Proizvodi> query)
         {
@@ -47,7 +44,6 @@ namespace eProdaja.Services
             var entity = GetById(id);
             var state = BaseProizvodiState.CreateState(entity.StateMachine);
             return state.Update(id, request);
-
         }
 
         public Model.Proizvodi Activate(int id)

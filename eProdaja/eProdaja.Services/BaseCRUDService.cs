@@ -10,16 +10,13 @@ using System.Threading.Tasks;
 
 namespace eProdaja.Services
 {
-    public abstract class BaseCRUDService<TModel, TSearch, TDbEntity, TInsert, TUpdate> : BaseService<TModel, TSearch, TDbEntity> where TModel : class where TSearch : BaseSearchObject where TDbEntity : class
+    public abstract class BaseCRUDService<TModel, TSearch, TDbEntity, TInsert, TUpdate> :
+    BaseService<TModel, TSearch, TDbEntity> where TModel : class where TSearch : BaseSearchObject where TDbEntity : class
     {
-        public BaseCRUDService(EProdajaContext context, IMapper mapper) : base(context, mapper)
-        {
-        }
+        public BaseCRUDService(EProdajaContext context, IMapper mapper) : base(context, mapper) { }
 
         public virtual TModel Insert(TInsert request)
         {
-            
-            
             TDbEntity entity = Mapper.Map<TDbEntity>(request);
 
             //if (request.Lozinka != request.LozinkaPotvrda)
@@ -30,32 +27,25 @@ namespace eProdaja.Services
 
             //entity.LozinkaSalt = GenerateSalt();
             //entity.LozinkaHash = GenerateHash(entity.LozinkaSalt, request.Lozinka);
-            BeforeInsert(request, entity);
 
+            BeforeInsert(request, entity);
             Context.Add(entity);
             Context.SaveChanges();
-
-
             return Mapper.Map<TModel>(entity);
         }
 
         public virtual void BeforeInsert(TInsert request, TDbEntity entity) { }
 
-        public virtual TModel Update(int id, TUpdate request) {
+        public virtual TModel Update(int id, TUpdate request)
+        {
             var set = Context.Set<TDbEntity>();
-
             var entity = set.Find(id);
-
             Mapper.Map(request, entity);
-
             BeforeUpdate(request, entity);
-
             Context.SaveChanges();
-
             return Mapper.Map<TModel>(entity);
         }
 
         public virtual void BeforeUpdate(TUpdate request, TDbEntity entity) { }
-
     }
 }

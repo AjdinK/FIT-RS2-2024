@@ -17,13 +17,10 @@ namespace eProdaja.Services
 {
     public class KorisniciService : BaseCRUDService<Model.Korisnici, KorisniciSearchObject, Database.Korisnici, KorisniciInsertRequest, KorisniciUpdateRequest>, IKorisniciService
     {
-        public KorisniciService(EProdajaContext context, IMapper mapper) : base(context, mapper)
-        {
-        }
-
+        public KorisniciService(EProdajaContext context, IMapper mapper) : base(context, mapper) { }
         public override IQueryable<Database.Korisnici> AddFilter(KorisniciSearchObject searchObject, IQueryable<Database.Korisnici> query)
         {
-            query =  base.AddFilter(searchObject, query);
+            query = base.AddFilter(searchObject, query);
             if (!string.IsNullOrWhiteSpace(searchObject?.ImeGTE))
             {
                 query = query.Where(x => x.Ime.StartsWith(searchObject.ImeGTE));
@@ -51,8 +48,6 @@ namespace eProdaja.Services
 
             return query;
         }
-
-
         public override void BeforeInsert(KorisniciInsertRequest request, Database.Korisnici entity)
         {
             if (request.Lozinka != request.LozinkaPotvrda)
@@ -64,7 +59,6 @@ namespace eProdaja.Services
             entity.LozinkaHash = GenerateHash(entity.LozinkaSalt, request.Lozinka);
             base.BeforeInsert(request, entity);
         }
-
         public static string GenerateSalt()
         {
             var byteArray = RNGCryptoServiceProvider.GetBytes(16);
@@ -85,7 +79,6 @@ namespace eProdaja.Services
             byte[] inArray = algorithm.ComputeHash(dst);
             return Convert.ToBase64String(inArray);
         }
-
         public override void BeforeUpdate(KorisniciUpdateRequest request, Database.Korisnici entity)
         {
             base.BeforeUpdate(request, entity);

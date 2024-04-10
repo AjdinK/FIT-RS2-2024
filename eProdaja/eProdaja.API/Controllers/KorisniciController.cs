@@ -11,8 +11,6 @@ namespace eProdaja.API.Controllers
     [Route("[controller]")]
     public class KorisniciController : BaseCRUDController<Model.Korisnici, KorisniciSearchObject, KorisniciInsertRequest, KorisniciUpdateRequest>
     {
-        public KorisniciController(IKorisniciService service)
-            : base(service) { }
-        
+        public KorisniciController (IKorisniciService service) : base (service) { }
     }
 }

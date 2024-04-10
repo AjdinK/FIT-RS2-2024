@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace eProdaja.API.Controllers
 {
-    public class BaseCRUDController<TModel, TSearch, TInsert, TUpdate> : BaseController<TModel, TSearch> where TSearch : BaseSearchObject where TModel : class
+    public class BaseCRUDController<TModel, TSearch, TInsert, TUpdate> : BaseController <TModel, TSearch> where TSearch : BaseSearchObject where TModel : class
     {
-        protected new ICRUDService<TModel, TSearch, TInsert, TUpdate> _service;
+        protected new ICRUDService <TModel, TSearch, TInsert, TUpdate> _service;
 
         public BaseCRUDController(ICRUDService<TModel, TSearch, TInsert, TUpdate> service) : base(service)
         {

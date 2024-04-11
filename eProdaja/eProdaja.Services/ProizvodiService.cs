@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Proizvodi = eProdaja.Model.Proizvodi;
 
 namespace eProdaja.Services
 {
@@ -51,6 +52,20 @@ namespace eProdaja.Services
             var entity = GetById(id);
             var state = BaseProizvodiState.CreateState(entity.StateMachine);
             return state.Activate(id);
+        }
+
+        public Proizvodi Edit(int id)
+        {
+            var entity = GetById(id);
+            var state = BaseProizvodiState.CreateState(entity.StateMachine);
+            return state.Edit(id);
+        }
+
+        public Proizvodi Hide(int id)
+        {
+            var entity = GetById(id);
+            var state = BaseProizvodiState.CreateState(entity.StateMachine);
+            return state.Hide(id);
         }
     }
 }

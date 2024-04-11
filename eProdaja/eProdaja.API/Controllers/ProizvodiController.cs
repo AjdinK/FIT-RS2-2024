@@ -17,5 +17,17 @@ namespace eProdaja.API.Controllers
         {
             return (_service as IProizvodiService).Activate(id);
         }
+        
+        [HttpPut("{id}/edit")]
+        public Proizvodi Edit(int id)
+        {
+            return (_service as IProizvodiService).Edit(id);
+        }
+        
+        [HttpPut("{id}/hide")]
+        public Proizvodi Hide(int id)
+        {
+            return (_service as IProizvodiService).Hide(id);
+        }
     }
 }

@@ -17,6 +17,7 @@ builder.Services.AddTransient<BaseProizvodiState>();
 builder.Services.AddTransient<InitialProizvodiState>();
 builder.Services.AddTransient<DraftProizvodiState>();
 builder.Services.AddTransient<ActiveProizvodiState>();
+builder.Services.AddTransient<HiddenProizvodiState>();
 
 
 builder.Services.AddControllers();

@@ -36,6 +36,11 @@ namespace eProdaja.Services.ProizvodiStateMachine
         {
             throw new Exception("Method not allowed");
         }
+        
+        public virtual Model.Proizvodi Edit(int id)
+        {
+            throw new Exception("Method not allowed");
+        }
 
         public BaseProizvodiState CreateState(string stateName)
         {
@@ -47,6 +52,8 @@ namespace eProdaja.Services.ProizvodiStateMachine
                     return ServiceProvider.GetService<DraftProizvodiState>();
                 case "active":
                     return ServiceProvider.GetService<ActiveProizvodiState>();
+                case "hidden":
+                    return ServiceProvider.GetService<HiddenProizvodiState>();
                 default: throw new Exception("State not recognized");
             }
         }

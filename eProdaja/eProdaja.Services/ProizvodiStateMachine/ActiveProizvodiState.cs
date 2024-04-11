@@ -10,8 +10,7 @@ namespace eProdaja.Services.ProizvodiStateMachine
 {
     public class ActiveProizvodiState : BaseProizvodiState
     {
-        public ActiveProizvodiState(EProdajaContext context, IMapper mapper, IServiceProvider serviceProvider) : base(context, mapper, serviceProvider)
-        {
-        }
+        public ActiveProizvodiState(EProdajaContext context, IMapper mapper, IServiceProvider serviceProvider)
+         : base(context, mapper, serviceProvider) { }
     }
 }

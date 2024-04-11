@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Proizvodi = eProdaja.Model.Proizvodi;
 
 namespace eProdaja.Services.ProizvodiStateMachine
 {
@@ -29,6 +30,15 @@ namespace eProdaja.Services.ProizvodiStateMachine
             var set = Context.Set<Database.Proizvodi>();
             var entity = set.Find(id);
             entity.StateMachine = "active";
+            Context.SaveChanges();
+            return Mapper.Map<Model.Proizvodi>(entity);
+        }
+
+        public override Proizvodi Hide(int id)
+        {
+            var set = Context.Set<Database.Proizvodi>();
+            var entity = set.Find(id);
+            entity.StateMachine = "hidden";
             Context.SaveChanges();
             return Mapper.Map<Model.Proizvodi>(entity);
         }

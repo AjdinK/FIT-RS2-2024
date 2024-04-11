@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using Proizvodi = eProdaja.Model.Proizvodi;
 
 namespace eProdaja.Services
@@ -18,9 +19,16 @@ namespace eProdaja.Services
     BaseCRUDService<Model.Proizvodi, ProizvodiSearchObject, Database.Proizvodi, ProizvodiInsertRequest, ProizvodiUpdateRequest>,
     IProizvodiService
     {
+        private ILogger<ProizvodiService> _logger;
         public BaseProizvodiState BaseProizvodiState { get; set; }
-        public ProizvodiService(EProdajaContext context, IMapper mapper, BaseProizvodiState baseProizvodiState)
-        : base(context, mapper) { BaseProizvodiState = baseProizvodiState; }
+
+        public ProizvodiService(EProdajaContext context, IMapper mapper, BaseProizvodiState baseProizvodiState,
+            ILogger<ProizvodiService> logger)
+            : base(context, mapper)
+        {
+            BaseProizvodiState = baseProizvodiState;
+            _logger = logger;
+        }
 
         public override IQueryable<Database.Proizvodi> AddFilter(ProizvodiSearchObject search, IQueryable<Database.Proizvodi> query)
         {
@@ -70,6 +78,8 @@ namespace eProdaja.Services
 
         public List<string> AllowedActions(int id)
         {
+            _logger.LogInformation($"Allowed Actions called for id {id}");
+            
             if (id <= 0)
             {
                 var state = BaseProizvodiState.CreateState("initial");

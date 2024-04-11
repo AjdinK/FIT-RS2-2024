@@ -45,7 +45,7 @@ namespace eProdaja.Services.ProizvodiStateMachine
 
         public override List<string> AllowedActions(Database.Proizvodi entity)
         {
-            return new List<string>() { nameof(Update), nameof(Activate) , nameof(Hide)};
+            return new List<string>() { nameof(Update), nameof(Activate) , nameof(Hide) };
         }
     }
 }

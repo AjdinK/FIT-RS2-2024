@@ -2,7 +2,7 @@
 
 namespace eProdaja.Model
 {
-    public class Class1
+    public class UserException : Exception
     {
 
     }

@@ -1,4 +1,5 @@
-﻿using eProdaja.Model.Requests;
+﻿using eProdaja.Model;
+using eProdaja.Model.Requests;
 using eProdaja.Services.Database;
 using MapsterMapper;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,32 +20,32 @@ namespace eProdaja.Services.ProizvodiStateMachine
         }
         public virtual Model.Proizvodi Insert(ProizvodiInsertRequest request)
         {
-            throw new Exception("Method not allowed");
+            throw new UserException("Method not allowed");
         }
 
         public virtual Model.Proizvodi Update(int id, ProizvodiUpdateRequest request)
         {
-            throw new Exception("Method not allowed");
+            throw new UserException("Method not allowed");
         }
 
         public virtual Model.Proizvodi Activate(int id)
         {
-            throw new Exception("Method not allowed");
+            throw new UserException("Method not allowed");
         }
 
         public virtual Model.Proizvodi Hide(int id)
         {
-            throw new Exception("Method not allowed");
+            throw new UserException("Method not allowed");
         }
         
         public virtual Model.Proizvodi Edit(int id)
         {
-            throw new Exception("Method not allowed");
+            throw new UserException("Method not allowed");
         }
         
         public virtual List <string> AllowedActions (Database.Proizvodi entity)
         {
-            throw new Exception("Method not allowed");
+            throw new UserException("Method not allowed");
         }
 
         public BaseProizvodiState CreateState(string stateName)
@@ -59,7 +60,7 @@ namespace eProdaja.Services.ProizvodiStateMachine
                     return ServiceProvider.GetService<ActiveProizvodiState>();
                 case "hidden":
                     return ServiceProvider.GetService<HiddenProizvodiState>();
-                default: throw new Exception("State not recognized");
+                default: throw new UserException ("State not recognized");
             }
         }
     }

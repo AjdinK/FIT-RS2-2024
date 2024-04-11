@@ -11,16 +11,23 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq.Dynamic;
+using Microsoft.Extensions.Logging;
 
 
 namespace eProdaja.Services
 {
     public class KorisniciService : BaseCRUDService<Model.Korisnici, KorisniciSearchObject, Database.Korisnici, KorisniciInsertRequest, KorisniciUpdateRequest>, IKorisniciService
     {
-        public KorisniciService(EProdajaContext context, IMapper mapper) : base(context, mapper) { }
+        private ILogger<KorisniciService> _logger;
+        public KorisniciService(EProdajaContext context, IMapper mapper, ILogger<KorisniciService> logger)
+            : base (context, mapper)
+        {
+            _logger = logger;
+        }
         public override IQueryable<Database.Korisnici> AddFilter(KorisniciSearchObject searchObject, IQueryable<Database.Korisnici> query)
         {
             query = base.AddFilter(searchObject, query);
+            
             if (!string.IsNullOrWhiteSpace(searchObject?.ImeGTE))
             {
                 query = query.Where(x => x.Ime.StartsWith(searchObject.ImeGTE));
@@ -50,9 +57,10 @@ namespace eProdaja.Services
         }
         public override void BeforeInsert(KorisniciInsertRequest request, Database.Korisnici entity)
         {
+            _logger.LogInformation($"Adding user : " + entity.KorisnickoIme + "{DateTime.now()}");
             if (request.Lozinka != request.LozinkaPotvrda)
             {
-                throw new Exception("Lozinka i LozinkaPotvrda moraju biti iste");
+                throw new UserException("Lozinka i LozinkaPotvrda moraju biti iste");
             }
 
             entity.LozinkaSalt = GenerateSalt();
@@ -62,8 +70,6 @@ namespace eProdaja.Services
         public static string GenerateSalt()
         {
             var byteArray = RNGCryptoServiceProvider.GetBytes(16);
-
-
             return Convert.ToBase64String(byteArray);
         }
         public static string GenerateHash(string salt, string password)
@@ -86,7 +92,7 @@ namespace eProdaja.Services
             {
                 if (request.Lozinka != request.LozinkaPotvrda)
                 {
-                    throw new Exception("Lozinka i LozinkaPotvrda moraju biti iste");
+                    throw new UserException("Lozinka i LozinkaPotvrda moraju biti iste");
                 }
 
                 entity.LozinkaSalt = GenerateSalt();

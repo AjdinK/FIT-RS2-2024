@@ -22,5 +22,10 @@ namespace eProdaja.Services.ProizvodiStateMachine
             Context.SaveChanges();
             return Mapper.Map<Model.Proizvodi>(entity);
         }
+        
+        public override List<string> AllowedActions(Database.Proizvodi entity)
+        {
+            return new List<string>() { nameof(Edit)};
+        }
     }
 }

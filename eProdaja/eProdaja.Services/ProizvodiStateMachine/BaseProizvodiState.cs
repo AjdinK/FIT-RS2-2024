@@ -41,6 +41,11 @@ namespace eProdaja.Services.ProizvodiStateMachine
         {
             throw new Exception("Method not allowed");
         }
+        
+        public virtual List <string> AllowedActions (Database.Proizvodi entity)
+        {
+            throw new Exception("Method not allowed");
+        }
 
         public BaseProizvodiState CreateState(string stateName)
         {

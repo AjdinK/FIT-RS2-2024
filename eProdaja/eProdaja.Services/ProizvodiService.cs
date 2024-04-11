@@ -67,5 +67,20 @@ namespace eProdaja.Services
             var state = BaseProizvodiState.CreateState(entity.StateMachine);
             return state.Hide(id);
         }
+
+        public List<string> AllowedActions(int id)
+        {
+            if (id <= 0)
+            {
+                var state = BaseProizvodiState.CreateState("initial");
+                return state.AllowedActions(null);
+            }
+            else
+            {
+                var entity = Context.Proizvodis.Find(id);
+                var state = BaseProizvodiState.CreateState(entity.StateMachine);
+                return state.AllowedActions(entity);
+            }
+        }
     }
 }

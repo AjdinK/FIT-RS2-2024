@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq.Dynamic;
 using Microsoft.Extensions.Logging;
+using Korisnici = eProdaja.Model.Korisnici;
 
 
 namespace eProdaja.Services
@@ -98,6 +99,23 @@ namespace eProdaja.Services
                 entity.LozinkaSalt = GenerateSalt();
                 entity.LozinkaHash = GenerateHash(entity.LozinkaSalt, request.Lozinka);
             }
+        }
+
+        public Korisnici Login(string username, string password)
+        {
+            var entity = Context.Korisnicis.FirstOrDefault(k => k.KorisnickoIme == username);
+            if (entity == null)
+            {
+                return null;
+            }
+
+            var hash = GenerateHash(entity.LozinkaSalt, password);
+            if (hash != entity.LozinkaHash)
+            {
+                return null;
+            }
+
+            return Mapper.Map<Korisnici>(entity);
         }
     }
 }

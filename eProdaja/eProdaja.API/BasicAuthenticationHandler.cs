@@ -12,7 +12,8 @@ namespace eProdaja.API;
 public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>
 {
     private IKorisniciService _korisniciService { get; set; }
-    public BasicAuthenticationHandler(IOptionsMonitor<AuthenticationSchemeOptions> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock,
+    public BasicAuthenticationHandler(IOptionsMonitor<AuthenticationSchemeOptions>
+            options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock,
         IKorisniciService korisniciService) : base(options, logger, encoder, clock)
     {
         _korisniciService = korisniciService;

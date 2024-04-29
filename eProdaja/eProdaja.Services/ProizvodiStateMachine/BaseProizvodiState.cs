@@ -2,6 +2,7 @@
 using eProdaja.Model.Requests;
 using eProdaja.Services.Database;
 using MapsterMapper;
+
 using Microsoft.Extensions.DependencyInjection;
 
 namespace eProdaja.Services.ProizvodiStateMachine
@@ -15,38 +16,39 @@ namespace eProdaja.Services.ProizvodiStateMachine
         public BaseProizvodiState(EProdajaContext context, IMapper mapper, IServiceProvider serviceProvider)
         {
             Context = context;
-            Mapper = mapper;
+            Mapper = mapper; 
             ServiceProvider = serviceProvider;
         }
         public virtual Model.Proizvodi Insert(ProizvodiInsertRequest request)
         {
-            throw new UserException("Method not allowed");
+            throw new UserException("Metoda nije dozvoljena");
         }
 
         public virtual Model.Proizvodi Update(int id, ProizvodiUpdateRequest request)
         {
-            throw new UserException("Method not allowed");
+            throw new UserException("Metoda nije dozvoljena");
         }
 
         public virtual Model.Proizvodi Activate(int id)
         {
-            throw new UserException("Method not allowed");
+            throw new UserException("Metoda nije dozvoljena");
         }
 
         public virtual Model.Proizvodi Hide(int id)
         {
-            throw new UserException("Method not allowed");
+            throw new UserException("Metoda nije dozvoljena");
         }
-        
+
         public virtual Model.Proizvodi Edit(int id)
         {
-            throw new UserException("Method not allowed");
+            throw new UserException("Metoda nije dozvoljena");
         }
-        
-        public virtual List <string> AllowedActions (Database.Proizvodi entity)
+
+        public virtual List<string> AllowedActions(Database.Proizvodi entity) 
         {
-            throw new UserException("Method not allowed");
+            throw new UserException("Metoda nije dozvoljena");
         }
+
 
         public BaseProizvodiState CreateState(string stateName)
         {
@@ -60,7 +62,7 @@ namespace eProdaja.Services.ProizvodiStateMachine
                     return ServiceProvider.GetService<ActiveProizvodiState>();
                 case "hidden":
                     return ServiceProvider.GetService<HiddenProizvodiState>();
-                default: throw new UserException ("State not recognized");
+                default : throw new Exception("State not recognized");
             }
         }
     }

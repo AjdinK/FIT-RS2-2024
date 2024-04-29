@@ -5,27 +5,21 @@ using eProdaja.Model.SearchObjects;
 using eProdaja.Services.Database;
 using eProdaja.Services.ProizvodiStateMachine;
 using MapsterMapper;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-using Proizvodi = eProdaja.Model.Proizvodi;
 
 namespace eProdaja.Services
 {
-    public class ProizvodiService :
-    BaseCRUDService<Model.Proizvodi, ProizvodiSearchObject, Database.Proizvodi, ProizvodiInsertRequest, ProizvodiUpdateRequest>,
-    IProizvodiService
+    public class ProizvodiService : BaseCRUDService<Model.Proizvodi, ProizvodiSearchObject, Database.Proizvodi, ProizvodiInsertRequest, ProizvodiUpdateRequest>, IProizvodiService
     {
-        private ILogger<ProizvodiService> _logger;
+        ILogger<ProizvodiService> _logger;
         public BaseProizvodiState BaseProizvodiState { get; set; }
-
-        public ProizvodiService(EProdajaContext context, IMapper mapper, BaseProizvodiState baseProizvodiState,
-            ILogger<ProizvodiService> logger)
-            : base(context, mapper)
-        {
+        public ProizvodiService(EProdajaContext context, IMapper mapper, BaseProizvodiState baseProizvodiState, ILogger<ProizvodiService> logger) 
+        : base(context, mapper) { 
             BaseProizvodiState = baseProizvodiState;
             _logger = logger;
         }
@@ -34,7 +28,7 @@ namespace eProdaja.Services
         {
             var filteredQuery = base.AddFilter(search, query);
 
-            if (!string.IsNullOrWhiteSpace(search?.FTS))
+            if(!string.IsNullOrWhiteSpace(search?.FTS))
             {
                 filteredQuery = filteredQuery.Where(x => x.Naziv.Contains(search.FTS));
             }
@@ -53,6 +47,7 @@ namespace eProdaja.Services
             var entity = GetById(id);
             var state = BaseProizvodiState.CreateState(entity.StateMachine);
             return state.Update(id, request);
+
         }
 
         public Model.Proizvodi Activate(int id)
@@ -62,14 +57,14 @@ namespace eProdaja.Services
             return state.Activate(id);
         }
 
-        public Proizvodi Edit(int id)
+        public Model.Proizvodi Edit(int id)
         {
             var entity = GetById(id);
             var state = BaseProizvodiState.CreateState(entity.StateMachine);
             return state.Edit(id);
         }
 
-        public Proizvodi Hide(int id)
+        public Model.Proizvodi Hide(int id)
         {
             var entity = GetById(id);
             var state = BaseProizvodiState.CreateState(entity.StateMachine);
@@ -78,8 +73,8 @@ namespace eProdaja.Services
 
         public List<string> AllowedActions(int id)
         {
-            _logger.LogInformation($"Allowed Actions called for id {id}");
-            
+            _logger.LogInformation($"Allowed actions called for: {id}");
+
             if (id <= 0)
             {
                 var state = BaseProizvodiState.CreateState("initial");

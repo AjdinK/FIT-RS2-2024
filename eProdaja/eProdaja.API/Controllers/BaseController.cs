@@ -1,12 +1,14 @@
 ﻿using eProdaja.Model;
 using eProdaja.Model.SearchObjects;
 using eProdaja.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eProdaja.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class BaseController<TModel, TSearch> : ControllerBase where TSearch : BaseSearchObject
     {
 
@@ -18,13 +20,13 @@ namespace eProdaja.API.Controllers
         }
 
         [HttpGet]
-        public PagedResult<TModel> GetList([FromQuery] TSearch searchObject)
+        public virtual PagedResult<TModel> GetList([FromQuery] TSearch searchObject)
         {
             return _service.GetPaged(searchObject);
         }
 
         [HttpGet("{id}")]
-        public TModel GetById(int id)
+        public virtual TModel GetById(int id)
         {
             return _service.GetById(id);
         }

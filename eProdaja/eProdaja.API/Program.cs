@@ -23,28 +23,31 @@ builder.Services.AddTransient<DraftProizvodiState>();
 builder.Services.AddTransient<ActiveProizvodiState>();
 builder.Services.AddTransient<HiddenProizvodiState>();
 
+builder.Services.AddControllers( x=>
+{
+    x.Filters.Add<ExceptionFilter>();
+});
 
-builder.Services.AddControllers( x=> x.Filters.Add<ExceptionFilters>() );
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-
-
-builder.Services.AddSwaggerGen( c => { 
-    c.AddSecurityDefinition("BasicAuthentication", new Microsoft.OpenApi.Models.OpenApiSecurityScheme { 
-        Type = Microsoft.OpenApi.Models.SecuritySchemeType.Http,
-        Scheme = "basic" 
-    });
-    
-    c.AddSecurityRequirement( new OpenApiSecurityRequirement {{
-    new OpenApiSecurityScheme
-    { 
-        Reference = new OpenApiReference
+builder.Services.AddSwaggerGen(c =>
+{
+    c.AddSecurityDefinition("basicAuth", new Microsoft.OpenApi.Models.OpenApiSecurityScheme()
     {
-        Type = ReferenceType.SecurityScheme ,
-        Id = "BasicAuthentication"
-    }},
-    new string []{} }
- });
+        Type = Microsoft.OpenApi.Models.SecuritySchemeType.Http,
+        Scheme = "basic"
+    });
+
+    c.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement()
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference{Type = ReferenceType.SecurityScheme, Id = "basicAuth"}
+            },
+            new string[]{}
+    } });
+
 });
 
 var connectionString = builder.Configuration.GetConnectionString("eProdajaConnection");
@@ -52,7 +55,6 @@ builder.Services.AddDbContext<EProdajaContext>(options =>
     options.UseSqlServer(connectionString));
 
 builder.Services.AddMapster();
-
 builder.Services.AddAuthentication("BasicAuthentication")
     .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
 
@@ -66,6 +68,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
 app.UseAuthorization();
+
 app.MapControllers();
+
 app.Run();

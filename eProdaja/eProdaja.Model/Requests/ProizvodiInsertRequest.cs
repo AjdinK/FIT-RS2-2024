@@ -23,6 +23,8 @@ namespace eProdaja.Model.Requests
         //public bool? Status { get; set; }
 
         //public string? StateMachine { get; set; }
+
+       
     }
 
 }

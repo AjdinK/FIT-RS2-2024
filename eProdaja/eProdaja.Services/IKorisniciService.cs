@@ -9,9 +9,8 @@ using System.Threading.Tasks;
 
 namespace eProdaja.Services
 {
-    public interface IKorisniciService :
-        ICRUDService<Korisnici, KorisniciSearchObject, KorisniciInsertRequest, KorisniciUpdateRequest>
+    public interface IKorisniciService : ICRUDService<Korisnici, KorisniciSearchObject, KorisniciInsertRequest, KorisniciUpdateRequest>
     {
-        Korisnici Login(string username, string password);
+        Model.Korisnici Login(string username, string password);
     }
 }

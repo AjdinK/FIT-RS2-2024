@@ -11,11 +11,12 @@ using System.Threading.Tasks;
 
 namespace eProdaja.Services
 {
-    public class VrsteProizvodumService :
-    BaseCRUDService<Model.VrsteProizvodum, VrsteProizvodumSearchObject, Database.VrsteProizvodum, VrsteProizvodumUpsertRequest, VrsteProizvodumUpsertRequest>
-    , IVrsteProizvodumService
+    public class VrsteProizvodumService : BaseCRUDService<Model.VrsteProizvodum, VrsteProizvodumSearchObject, Database.VrsteProizvodum, VrsteProizvodumUpsertRequest, VrsteProizvodumUpsertRequest>, IVrsteProizvodumService
     {
+
         public VrsteProizvodumService(EProdajaContext context, IMapper mapper)
-        : base(context, mapper) { }
+        : base(context, mapper){ 
+
+        }
     }
 }

@@ -3,8 +3,6 @@
 using EasyNetQ;
 using eProdaja.Model.Messages;
 
-Console.WriteLine("Hello, World!");
-
 
 var bus = RabbitHutch.CreateBus("host=localhost:5673");
 await bus.PubSub.SubscribeAsync<ProizvodiActivated>("console_printer", msg =>

@@ -107,7 +107,10 @@ namespace eProdaja.Services
 
         public Model.Korisnici Login(string username, string password)
         {
-            var entity = Context.Korisnicis.Include(x=> x.KorisniciUloges).ThenInclude(y=>y.Uloga).FirstOrDefault(x => x.KorisnickoIme == username);
+            var entity = Context.Korisnicis
+                .Include(x=> x.KorisniciUloges)
+                .ThenInclude(y=>y.Uloga)
+                .FirstOrDefault(x => x.KorisnickoIme == username);
 
             if (entity == null)
             {

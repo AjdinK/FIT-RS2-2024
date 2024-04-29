@@ -12,12 +12,11 @@ namespace eProdaja.API.Controllers
     [Route("[controller]")]
     public class KorisniciController : BaseCRUDController<Model.Korisnici, KorisniciSearchObject, KorisniciInsertRequest, KorisniciUpdateRequest>
     {
-        public KorisniciController(IKorisniciService service)
-            : base(service) { }
+        public KorisniciController(IKorisniciService service) : base(service) { }
 
         [HttpPost("login")]
         [AllowAnonymous]
-        public Model.Korisnici Login(string username, string password)
+        public Model.Korisnici Login (string username, string password)
         {
             return (_service as IKorisniciService).Login(username, password);
         }

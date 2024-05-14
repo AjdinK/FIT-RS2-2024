@@ -40,12 +40,12 @@ builder.Services.AddSwaggerGen(c =>
 
     c.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement()
     {
+    {
+        new OpenApiSecurityScheme
         {
-            new OpenApiSecurityScheme
-            {
-                Reference = new OpenApiReference{Type = ReferenceType.SecurityScheme, Id = "basicAuth"}
-            },
-            new string[]{}
+            Reference = new OpenApiReference{Type = ReferenceType.SecurityScheme, Id = "basicAuth"}
+        },
+        new string[]{}
     } });
 
 });

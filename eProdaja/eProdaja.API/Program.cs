@@ -73,4 +73,11 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+using (var scope = app.Services.CreateScope())
+{
+    var dataContext = scope.ServiceProvider.GetService<EProdajaContext>();
+    dataContext.Database.EnsureCreated();
+    dataContext.Database.Migrate();
+}
+
 app.Run();

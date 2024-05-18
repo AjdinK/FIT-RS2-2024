@@ -63,11 +63,12 @@ class _Login2PageState extends State<LoginPage> {
                   height: 40,
                 ),
                 TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                      Navigator.pushNamed(context, "/register");
-                    },
-                    child: const Text("Dont have an account, register here")),
+                  onPressed: () {
+                    Navigator.pop(context);
+                    Navigator.pushNamed(context, "/register");
+                  },
+                  child: const Text("Dont have an account, register here"),
+                ),
               ],
             ),
           ),

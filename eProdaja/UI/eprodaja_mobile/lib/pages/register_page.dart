@@ -91,15 +91,14 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 ElevatedButton(
                   onPressed: () {},
-                  child: const Text("Login"),
+                  child: const Text("Register"),
                 ),
                 const SizedBox(
                   height: 40,
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.pop(context);
-                    Navigator.pushNamed(context, "/register");
+                    Navigator.pushNamed(context, "/login");
                   },
                   child: const Text("Have an account, Login here"),
                 ),

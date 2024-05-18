@@ -52,11 +52,24 @@ class _Login2PageState extends State<LoginPage> {
                     border: OutlineInputBorder(),
                   ),
                 ),
+                Row(
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, "/resetpassword");
+                      },
+                      child: const Text("Forgot password ? "),
+                    ),
+                  ],
+                ),
                 const SizedBox(
                   height: 30,
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                    Navigator.pushNamed(context, "/home");
+                  },
                   child: const Text("Login"),
                 ),
                 const SizedBox(
@@ -64,7 +77,6 @@ class _Login2PageState extends State<LoginPage> {
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.pop(context);
                     Navigator.pushNamed(context, "/register");
                   },
                   child: const Text("Dont have an account, register here"),

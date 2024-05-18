@@ -1,5 +1,7 @@
+import 'package:eprodaja_mobile/pages/home_page.dart';
 import 'package:eprodaja_mobile/pages/login_page.dart';
 import 'package:eprodaja_mobile/pages/register_page.dart';
+import 'package:eprodaja_mobile/pages/reset_password_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,6 +19,8 @@ class MyApp extends StatelessWidget {
       routes: {
         "/register": (context) => const RegisterPage(),
         "/login": (context) => const LoginPage(),
+        "/resetpassword": (context) => const ResetPasswordPage(),
+        "/home": (context) => const HomePage(),
       },
     );
   }

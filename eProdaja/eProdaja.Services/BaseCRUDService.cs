@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace eProdaja.Services
 {
-    public abstract class BaseCRUDService<TModel, TSearch, TDbEntity, TInsert, TUpdate> : BaseService<TModel, TSearch, TDbEntity> where TModel : class where TSearch : BaseSearchObject where TDbEntity : class
+    public abstract class BaseCRUDService <TModel, TSearch, TDbEntity, TInsert, TUpdate> 
+        : BaseService<TModel, TSearch, TDbEntity> where TModel : class where TSearch : BaseSearchObject where TDbEntity : class
     {
         public BaseCRUDService(EProdajaContext context, IMapper mapper) : base(context, mapper)
-        {
-        }
+        { }
 
         public virtual TModel Insert(TInsert request)
         {

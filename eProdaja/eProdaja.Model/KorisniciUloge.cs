@@ -14,6 +14,5 @@ namespace eProdaja.Model
         public DateTime DatumIzmjene { get; set; }
         public virtual Uloge Uloga { get; set; } = null!;
     }
-
 }
 

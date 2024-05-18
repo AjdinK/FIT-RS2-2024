@@ -11,9 +11,9 @@ namespace eProdaja.Services.ProizvodiStateMachine
 {
     public class InitialProizvodiState : BaseProizvodiState
     {
-        public InitialProizvodiState(Database.EProdajaContext context, IMapper mapper, IServiceProvider serviceProvider) : base(context, mapper, serviceProvider)
-        {
-        }
+        public InitialProizvodiState(Database.EProdajaContext context, IMapper mapper, IServiceProvider serviceProvider)
+            : base(context, mapper, serviceProvider)
+        { }
 
         public override Proizvodi Insert(ProizvodiInsertRequest request)
         {
@@ -22,7 +22,6 @@ namespace eProdaja.Services.ProizvodiStateMachine
             entity.StateMachine = "draft";
             set.Add(entity);
             Context.SaveChanges();
-
             return Mapper.Map<Proizvodi>(entity);
         }
 
@@ -30,7 +29,5 @@ namespace eProdaja.Services.ProizvodiStateMachine
         {
             return new List<string>() { nameof(Insert) };
         }
-
-
     }
 }

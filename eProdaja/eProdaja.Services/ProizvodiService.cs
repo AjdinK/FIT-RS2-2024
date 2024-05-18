@@ -36,18 +36,17 @@ namespace eProdaja.Services
             return filteredQuery;
         }
 
-        public override Model.Proizvodi Insert(ProizvodiInsertRequest request)
+        public override Model.Proizvodi Insert (ProizvodiInsertRequest request)
         {
             var state = BaseProizvodiState.CreateState("initial");
             return state.Insert(request);
         }
 
-        public override Model.Proizvodi Update(int id, ProizvodiUpdateRequest request)
+        public override Model.Proizvodi Update (int id, ProizvodiUpdateRequest request)
         {
             var entity = GetById(id);
             var state = BaseProizvodiState.CreateState(entity.StateMachine);
             return state.Update(id, request);
-
         }
 
         public Model.Proizvodi Activate(int id)
@@ -71,7 +70,7 @@ namespace eProdaja.Services
             return state.Hide(id);
         }
 
-        public List<string> AllowedActions(int id)
+        public List<string> AllowedActions (int id)
         {
             _logger.LogInformation($"Allowed actions called for: {id}");
 

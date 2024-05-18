@@ -20,19 +20,17 @@ class _LoginPageState extends State<LoginPage> {
       body: Center(
         child: Card(
           child: SingleChildScrollView(
-            // Allow content to scroll if keyboard appears
             padding: EdgeInsets.all(30.0),
             child: Column(
               children: [
-                // Company logo (replace with your logo image asset)
                 Image.network(
                   "https://www.fit.ba/content/763cbb87-718d-4eca-a991-343858daf424",
                   height: 100,
                   width: 100,
-                ), // Replace with your asset path
+                ),
+
                 SizedBox(height: 20.0),
 
-                // Email field
                 TextField(
                   decoration: InputDecoration(
                     labelText: 'Email',
@@ -43,12 +41,10 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 SizedBox(height: 10.0),
 
-                // Password field
                 TextField(
                   decoration: InputDecoration(
                     labelText: 'Password',
                     border: OutlineInputBorder(),
-                    // Hide password characters
                   ),
                   obscureText: true,
                   onChanged: (value) => setState(() => _password = value),
@@ -58,7 +54,6 @@ class _LoginPageState extends State<LoginPage> {
                 // Login button
                 ElevatedButton(
                   onPressed: () {
-                    // Handle login logic (e.g., validate email/password, call API)
                     print(
                         'Logging in with email: $_email, password: $_password');
                   },
@@ -66,10 +61,8 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 SizedBox(height: 20.0),
 
-                // Register link
                 TextButton(
                   onPressed: () {
-                    // Navigate to register page (implementation not shown here)
                     print('Navigating to register page');
                   },
                   child: Text("Don't have an account, register here"),

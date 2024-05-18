@@ -1,29 +1,24 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _LoginPageState extends State<LoginPage> {
   String _email = "";
-
   String _password = "";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue[200],
-        title: const Text("login"),
+        title: Text("Login"),
       ),
-      backgroundColor: Colors.blue[100],
       body: Center(
         child: Card(
-          margin: EdgeInsets.all(20),
-          color: Colors.white,
           child: SingleChildScrollView(
             // Allow content to scroll if keyboard appears
             padding: EdgeInsets.all(30.0),
@@ -55,6 +50,7 @@ class _HomePageState extends State<HomePage> {
                     border: OutlineInputBorder(),
                     // Hide password characters
                   ),
+                  obscureText: true,
                   onChanged: (value) => setState(() => _password = value),
                 ),
                 SizedBox(height: 20.0),

@@ -1,4 +1,5 @@
 import 'package:eprodaja_mobile/pages/login_page.dart';
+import 'package:eprodaja_mobile/pages/register_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,7 +12,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      // home: LoginPage(),
+      home: const LoginPage(),
+      routes: {
+        "/register": (context) => const RegisterPage(),
+        "/login": (context) => const LoginPage(),
+      },
     );
   }
 }

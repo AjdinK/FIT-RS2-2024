@@ -10,8 +10,8 @@ using System.Threading.Tasks;
 
 namespace eProdaja.Services
 {
-    public abstract class BaseService<TModel, TSearch, TDbEntity> : IService<TModel, TSearch> 
-        where TSearch: BaseSearchObject where TDbEntity : class where TModel: class
+    public abstract class BaseService<TModel, TSearch, TDbEntity> : IService<TModel, TSearch>
+        where TSearch : BaseSearchObject where TDbEntity : class where TModel : class
     {
         public EProdajaContext Context { get; set; }
         public IMapper Mapper { get; set; }
@@ -27,12 +27,12 @@ namespace eProdaja.Services
             var query = Context.Set<TDbEntity>().AsQueryable();
 
             query = AddFilter(search, query);
-            
+
             if (search?.Page.HasValue == true && search?.PageSize.HasValue == true)
             {
                 query = query.Skip(search.Page.Value * search.PageSize.Value).Take(search.PageSize.Value);
             }
-            
+
             int count = query.Count();
             var list = query.ToList();
             result = Mapper.Map(list, result);
@@ -50,9 +50,9 @@ namespace eProdaja.Services
 
         public TModel GetById(int id)
         {
-           var entity = Context.Set<TDbEntity>().Find(id);
-            
-            if(entity != null)
+            var entity = Context.Set<TDbEntity>().Find(id);
+
+            if (entity != null)
             {
                 return Mapper.Map<TModel>(entity);
             }
@@ -60,7 +60,6 @@ namespace eProdaja.Services
             {
                 return null;
             }
-           
         }
     }
 }

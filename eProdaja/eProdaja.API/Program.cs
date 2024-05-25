@@ -23,7 +23,7 @@ builder.Services.AddTransient<DraftProizvodiState>();
 builder.Services.AddTransient<ActiveProizvodiState>();
 builder.Services.AddTransient<HiddenProizvodiState>();
 
-builder.Services.AddControllers( x=>
+builder.Services.AddControllers(x =>
 {
     x.Filters.Add<ExceptionFilter>();
 });

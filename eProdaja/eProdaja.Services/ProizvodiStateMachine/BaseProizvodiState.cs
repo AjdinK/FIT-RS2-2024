@@ -16,7 +16,7 @@ namespace eProdaja.Services.ProizvodiStateMachine
         public BaseProizvodiState(EProdajaContext context, IMapper mapper, IServiceProvider serviceProvider)
         {
             Context = context;
-            Mapper = mapper; 
+            Mapper = mapper;
             ServiceProvider = serviceProvider;
         }
         public virtual Model.Proizvodi Insert(ProizvodiInsertRequest request)
@@ -44,7 +44,7 @@ namespace eProdaja.Services.ProizvodiStateMachine
             throw new UserException("Metoda nije dozvoljena");
         }
 
-        public virtual List<string> AllowedActions(Database.Proizvodi entity) 
+        public virtual List<string> AllowedActions(Database.Proizvodi entity)
         {
             throw new UserException("Metoda nije dozvoljena");
         }
@@ -62,7 +62,7 @@ namespace eProdaja.Services.ProizvodiStateMachine
                     return ServiceProvider.GetService<ActiveProizvodiState>();
                 case "hidden":
                     return ServiceProvider.GetService<HiddenProizvodiState>();
-                default : throw new Exception("State not recognized");
+                default: throw new Exception("State not recognized");
             }
         }
     }

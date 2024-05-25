@@ -18,8 +18,9 @@ namespace eProdaja.Services
     {
         ILogger<ProizvodiService> _logger;
         public BaseProizvodiState BaseProizvodiState { get; set; }
-        public ProizvodiService(EProdajaContext context, IMapper mapper, BaseProizvodiState baseProizvodiState, ILogger<ProizvodiService> logger) 
-        : base(context, mapper) { 
+        public ProizvodiService(EProdajaContext context, IMapper mapper, BaseProizvodiState baseProizvodiState, ILogger<ProizvodiService> logger)
+        : base(context, mapper)
+        {
             BaseProizvodiState = baseProizvodiState;
             _logger = logger;
         }
@@ -28,7 +29,7 @@ namespace eProdaja.Services
         {
             var filteredQuery = base.AddFilter(search, query);
 
-            if(!string.IsNullOrWhiteSpace(search?.FTS))
+            if (!string.IsNullOrWhiteSpace(search?.FTS))
             {
                 filteredQuery = filteredQuery.Where(x => x.Naziv.Contains(search.FTS));
             }
@@ -36,13 +37,13 @@ namespace eProdaja.Services
             return filteredQuery;
         }
 
-        public override Model.Proizvodi Insert (ProizvodiInsertRequest request)
+        public override Model.Proizvodi Insert(ProizvodiInsertRequest request)
         {
             var state = BaseProizvodiState.CreateState("initial");
             return state.Insert(request);
         }
 
-        public override Model.Proizvodi Update (int id, ProizvodiUpdateRequest request)
+        public override Model.Proizvodi Update(int id, ProizvodiUpdateRequest request)
         {
             var entity = GetById(id);
             var state = BaseProizvodiState.CreateState(entity.StateMachine);
@@ -70,7 +71,7 @@ namespace eProdaja.Services
             return state.Hide(id);
         }
 
-        public List<string> AllowedActions (int id)
+        public List<string> AllowedActions(int id)
         {
             _logger.LogInformation($"Allowed actions called for: {id}");
 

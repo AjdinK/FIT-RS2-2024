@@ -10,16 +10,16 @@ using System.Threading.Tasks;
 
 namespace eProdaja.Services
 {
-    public abstract class BaseCRUDService <TModel, TSearch, TDbEntity, TInsert, TUpdate> 
+    public abstract class BaseCRUDService<TModel, TSearch, TDbEntity, TInsert, TUpdate>
         : BaseService<TModel, TSearch, TDbEntity> where TModel : class where TSearch : BaseSearchObject where TDbEntity : class
     {
-        public BaseCRUDService(EProdajaContext context, IMapper mapper) : base(context, mapper)
+        public BaseCRUDService(EProdajaContext context, IMapper mapper)
+         : base(context, mapper)
         { }
 
         public virtual TModel Insert(TInsert request)
         {
-            
-            
+
             TDbEntity entity = Mapper.Map<TDbEntity>(request);
 
             //if (request.Lozinka != request.LozinkaPotvrda)
@@ -41,7 +41,8 @@ namespace eProdaja.Services
 
         public virtual void BeforeInsert(TInsert request, TDbEntity entity) { }
 
-        public virtual TModel Update(int id, TUpdate request) {
+        public virtual TModel Update(int id, TUpdate request)
+        {
             var set = Context.Set<TDbEntity>();
 
             var entity = set.Find(id);

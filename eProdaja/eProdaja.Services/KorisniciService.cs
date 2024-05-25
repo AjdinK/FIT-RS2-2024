@@ -15,7 +15,7 @@ using Microsoft.Extensions.Logging;
 
 namespace eProdaja.Services
 {
-    public class KorisniciService : 
+    public class KorisniciService :
         BaseCRUDService<Model.Korisnici, KorisniciSearchObject, Database.Korisnici, KorisniciInsertRequest, KorisniciUpdateRequest>
         , IKorisniciService
     {
@@ -25,10 +25,10 @@ namespace eProdaja.Services
             _logger = logger;
         }
 
-        public override IQueryable<Database.Korisnici> AddFilter (KorisniciSearchObject searchObject, IQueryable<Database.Korisnici> query)
+        public override IQueryable<Database.Korisnici> AddFilter(KorisniciSearchObject searchObject, IQueryable<Database.Korisnici> query)
         {
-            query =  base.AddFilter(searchObject, query);
-            
+            query = base.AddFilter(searchObject, query);
+
             if (!string.IsNullOrWhiteSpace(searchObject?.ImeGTE))
             {
                 query = query.Where(x => x.Ime.StartsWith(searchObject.ImeGTE));
@@ -111,8 +111,8 @@ namespace eProdaja.Services
         public Model.Korisnici Login(string username, string password)
         {
             var entity = Context.Korisnicis
-                .Include(x=> x.KorisniciUloges)
-                .ThenInclude(y=>y.Uloga)
+                .Include(x => x.KorisniciUloges)
+                .ThenInclude(y => y.Uloga)
                 .FirstOrDefault(x => x.KorisnickoIme == username);
 
             if (entity == null)

@@ -18,7 +18,7 @@ namespace eProdaja.Services.ProizvodiStateMachine
         public override Proizvodi Insert(ProizvodiInsertRequest request)
         {
             var set = Context.Set<Database.Proizvodi>();
-            var entity =Mapper.Map<Database.Proizvodi>(request);
+            var entity = Mapper.Map<Database.Proizvodi>(request);
             entity.StateMachine = "draft";
             set.Add(entity);
             Context.SaveChanges();

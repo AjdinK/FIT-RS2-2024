@@ -31,7 +31,8 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue, primary: Colors.red) ,
+        colorScheme:
+            ColorScheme.fromSeed(seedColor: Colors.blue, primary: Colors.red),
         useMaterial3: true,
       ),
       home: LoginPage(),
@@ -42,49 +43,78 @@ class MyApp extends StatelessWidget {
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
   TextEditingController _usernameController = new TextEditingController();
-TextEditingController _passwordController = new TextEditingController();
+  TextEditingController _passwordController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
-      appBar: AppBar(title: Text("Login"),),
+      appBar: AppBar(
+        title: Text("Login"),
+      ),
       body: Center(
         child: Center(
           child: Container(
             constraints: const BoxConstraints(maxHeight: 400, maxWidth: 400),
-           child: Card(
-            child: Column(
-              children: [
-                Image.asset("assets/images/logo.png", height: 100, width: 100,),
-                // Image.network("https://fit.ba/content/763cbb87-718d-4eca-a991-343858daf424", height: 100, width: 100,),
-                 const SizedBox(height: 10,),
-                 TextField(controller: _usernameController, decoration: InputDecoration(labelText: "Username", prefixIcon: Icon(Icons.email)),),
-                 SizedBox(height: 10,),
-                TextField(controller: _passwordController, decoration: InputDecoration(labelText: "Password", prefixIcon: Icon(Icons.password)),),
-                ElevatedButton(
-                  onPressed: () async {
-                    ProductProvider provider = new ProductProvider();
-                    
-                    print("credentials: ${_usernameController.text} : ${_passwordController.text}");
-                    AuthProvider.username = _usernameController.text;
-                    AuthProvider.password = _passwordController.text;
-                    try {
-                      var data = await provider.get();
-                      Navigator.of(context).push(MaterialPageRoute(builder:  (context) => ProductListScreen()));
+            child: Card(
+              child: Column(
+                children: [
+                  Image.asset(
+                    "assets/images/logo.png",
+                    height: 100,
+                    width: 100,
+                  ),
+                  // Image.network("https://fit.ba/content/763cbb87-718d-4eca-a991-343858daf424", height: 100, width: 100,),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  TextField(
+                    controller: _usernameController,
+                    decoration: InputDecoration(
+                        labelText: "Username", prefixIcon: Icon(Icons.email)),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  TextField(
+                    controller: _passwordController,
+                    decoration: InputDecoration(
+                        labelText: "Password",
+                        prefixIcon: Icon(Icons.password)),
+                  ),
+                  ElevatedButton(
+                      onPressed: () async {
+                        ProductProvider provider = new ProductProvider();
 
-                    } on Exception catch (e) {
-                      showDialog(context: context, builder: (context) => AlertDialog(title: Text("Error"), actions: [TextButton(onPressed: () => Navigator.pop(context), child: Text("OK"))], content: Text(e.toString()),));
-                    }
-                    
-
-                  }
-                  , child: Text("Login"))
-                
-              ],
+                        print(
+                            "credentials: ${_usernameController.text} : ${_passwordController.text}");
+                        AuthProvider.username = _usernameController.text;
+                        AuthProvider.password = _passwordController.text;
+                        try {
+                          var data = await provider.get();
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => ProductListScreen()));
+                        } on Exception catch (e) {
+                          showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                    title: Text("Error"),
+                                    actions: [
+                                      TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(context),
+                                          child: Text("OK"))
+                                    ],
+                                    content: Text(e.toString()),
+                                  ));
+                        }
+                      },
+                      child: Text("Login"))
+                ],
+              ),
             ),
-           ),),),
+          ),
         ),
+      ),
     );
   }
 }
@@ -119,8 +149,9 @@ class LayoutExamples extends StatelessWidget {
         Container(
           height: 150,
           color: Colors.red,
-          child: Center(child: Text("Contain"),),
-
+          child: Center(
+            child: Text("Contain"),
+          ),
         )
       ],
     );

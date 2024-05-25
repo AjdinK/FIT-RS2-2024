@@ -32,7 +32,7 @@ namespace eProdaja.API
 
             var user = _korisniciService.Login(username, password);
 
-            if (user == null)
+            if(user == null)
             {
                 return AuthenticateResult.Fail("Auth failed");
             }
@@ -44,7 +44,7 @@ namespace eProdaja.API
                     new Claim(ClaimTypes.NameIdentifier, user.KorisnickoIme)
                 };
 
-                foreach (var role in user.KorisniciUloges)
+                foreach(var role in user.KorisniciUloges)
                 {
                     claims.Add(new Claim(ClaimTypes.Role, role.Uloga.Naziv));
                 }

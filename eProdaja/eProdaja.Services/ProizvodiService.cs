@@ -18,9 +18,8 @@ namespace eProdaja.Services
     {
         ILogger<ProizvodiService> _logger;
         public BaseProizvodiState BaseProizvodiState { get; set; }
-        public ProizvodiService(EProdajaContext context, IMapper mapper, BaseProizvodiState baseProizvodiState, ILogger<ProizvodiService> logger)
-        : base(context, mapper)
-        {
+        public ProizvodiService(EProdajaContext context, IMapper mapper, BaseProizvodiState baseProizvodiState, ILogger<ProizvodiService> logger) 
+        : base(context, mapper) { 
             BaseProizvodiState = baseProizvodiState;
             _logger = logger;
         }
@@ -29,7 +28,7 @@ namespace eProdaja.Services
         {
             var filteredQuery = base.AddFilter(search, query);
 
-            if (!string.IsNullOrWhiteSpace(search?.FTS))
+            if(!string.IsNullOrWhiteSpace(search?.FTS))
             {
                 filteredQuery = filteredQuery.Where(x => x.Naziv.Contains(search.FTS));
             }
@@ -48,6 +47,7 @@ namespace eProdaja.Services
             var entity = GetById(id);
             var state = BaseProizvodiState.CreateState(entity.StateMachine);
             return state.Update(id, request);
+
         }
 
         public Model.Proizvodi Activate(int id)

@@ -23,7 +23,7 @@ builder.Services.AddTransient<DraftProizvodiState>();
 builder.Services.AddTransient<ActiveProizvodiState>();
 builder.Services.AddTransient<HiddenProizvodiState>();
 
-builder.Services.AddControllers(x =>
+builder.Services.AddControllers( x=>
 {
     x.Filters.Add<ExceptionFilter>();
 });
@@ -40,17 +40,18 @@ builder.Services.AddSwaggerGen(c =>
 
     c.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement()
     {
-    {
-        new OpenApiSecurityScheme
         {
-            Reference = new OpenApiReference{Type = ReferenceType.SecurityScheme, Id = "basicAuth"}
-        },
-        new string[]{}
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference{Type = ReferenceType.SecurityScheme, Id = "basicAuth"}
+            },
+            new string[]{}
     } });
 
 });
 
 var connectionString = builder.Configuration.GetConnectionString("eProdajaConnection");
+
 builder.Services.AddDbContext<EProdajaContext>(options =>
     options.UseSqlServer(connectionString));
 
@@ -75,9 +76,10 @@ app.MapControllers();
 
 using (var scope = app.Services.CreateScope())
 {
-    var dataContext = scope.ServiceProvider.GetService<EProdajaContext>();
-    dataContext.Database.EnsureCreated();
-    dataContext.Database.Migrate();
+    var dataContext = scope.ServiceProvider.GetRequiredService<EProdajaContext>();
+    //dataContext.Database.EnsureCreated();
+
+    //dataContext.Database.Migrate();
 }
 
 app.Run();

@@ -12,8 +12,10 @@ namespace eProdaja.Services
     public interface IProizvodiService : ICRUDService<Proizvodi, ProizvodiSearchObject, ProizvodiInsertRequest, ProizvodiUpdateRequest>
     {
         public Proizvodi Activate(int id);
+
         public Proizvodi Edit(int id);
         public Proizvodi Hide(int id);
+
         public List<string> AllowedActions(int id);
     }
 }

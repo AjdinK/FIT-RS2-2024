@@ -1,8 +1,8 @@
 version: '3'
 services:
-  #mssql docker
+#mssql docker
   eprodaja-sql:
-    image: mcr.microsoft.com/mssql/server:2022-latest
+    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
     restart: unless-stopped
     environment:
       - ACCEPT_EULA=Y
@@ -20,17 +20,17 @@ services:
     build:
       context: .
     environment:
-      - ConnectionStrings:eProdajaConnection=Server=eprodaja-sql,1433;Database=eProdajaVjezbe;User=sa;Password=QWElkj132!;ConnectRetryCount=0; TrustServerCertificate=True
+      - ConnectionStrings:eProdajaConnection=Server=eprodaja-sql,1433;Database=eProdajaVjezbe2024;User=sa;Password=QWElkj132!;ConnectRetryCount=0; TrustServerCertificate=True
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - 7015:7015
+      - 5269:5269
     networks:
       - eprodajanet2024
     links:
       - eprodaja-sql
     depends_on:
       - eprodaja-sql
-
+      
 networks:
   eprodajanet2024:
-    driver: bridge
+    driver: bridge      

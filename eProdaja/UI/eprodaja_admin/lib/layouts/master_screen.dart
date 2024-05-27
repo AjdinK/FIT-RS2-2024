@@ -1,5 +1,4 @@
-import 'package:eprodaja_admin_moje/screens/korisnici_screen.dart';
-import 'package:eprodaja_admin_moje/screens/login_sreen.dart';
+import 'package:eprodaja_admin/screens/user_list_screen.dart';
 import 'package:flutter/material.dart';
 
 class MasterScreen extends StatefulWidget {

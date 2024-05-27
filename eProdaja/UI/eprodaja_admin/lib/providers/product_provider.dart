@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:eprodaja_admin_moje/providers/auth_provider.dart';
+import 'package:eprodaja_admin/providers/auth_provider.dart';
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
 

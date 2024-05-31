@@ -6,6 +6,6 @@ class PorductScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MasterScreen(Scaffold(), "Proizvodi");
+    return MasterScreen(const Scaffold(), "Proizvodi");
   }
 }

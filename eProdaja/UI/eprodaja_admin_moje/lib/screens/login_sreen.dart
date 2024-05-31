@@ -75,23 +75,27 @@ class LoginSreen extends StatelessWidget {
 
                   try {
                     var data = await productProvider.GetAll();
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const PorductScreen()));
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const PorductScreen(),
+                      ),
+                    );
                   } catch (e) {
                     showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                              title: const Text("Error"),
-                              content: Text(e.toString()),
-                              actions: [
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: const Text("ok"),
-                                )
-                              ],
-                            ));
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        title: const Text("Error"),
+                        content: Text(e.toString()),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: const Text("ok"),
+                          )
+                        ],
+                      ),
+                    );
                   }
                 },
                 child: const Text("Login"),

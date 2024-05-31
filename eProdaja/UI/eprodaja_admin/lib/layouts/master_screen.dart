@@ -1,8 +1,10 @@
+import 'package:eprodaja_admin/screens/product_details_screen.dart';
+import 'package:eprodaja_admin/screens/product_list_screen.dart';
 import 'package:eprodaja_admin/screens/user_list_screen.dart';
 import 'package:flutter/material.dart';
 
 class MasterScreen extends StatefulWidget {
-  MasterScreen(this.child, this.title, {super.key});
+  MasterScreen(this.title, this.child, {super.key});
   String title;
   Widget child;
 
@@ -14,53 +16,39 @@ class _MasterScreenState extends State<MasterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
+      appBar: AppBar(title: Text(widget.title),),
       drawer: Drawer(
         child: ListView(
           children: [
             ListTile(
+              title: Text("Back"),
               onTap: () {
-                Navigator.of(context).pop();
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => LoginSreen(),
-                  ),
-                );
+                Navigator.pop(context);
+                Navigator.pop(context);
               },
-              leading: const Icon(Icons.arrow_back),
-              title: const Text('Back'),
+            ),
+             ListTile(
+              title: Text("Detalji"),
+              onTap: () {
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => ProductDetailsScreen()));
+              },
             ),
             ListTile(
+              title: Text("Korisnici"),
               onTap: () {
-                Navigator.of(context).pop();
+                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => UserListScreen()));
               },
-              leading: const Icon(Icons.info_outline),
-              title: const Text('Detalji'),
             ),
             ListTile(
+              title: Text("Proizvodi"),
               onTap: () {
-                Navigator.of(context).pop();
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProductListScreen()));
               },
-              leading: const Icon(Icons.store_outlined),
-              title: const Text('Product'),
-            ),
-            ListTile(
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const KorisniciScreen(),
-                  ),
-                );
-              },
-              leading: const Icon(Icons.people_alt_outlined),
-              title: const Text('Korisnici'),
-            ),
+            )
           ],
         ),
       ),
-      body: widget.child,
+      body: widget.child ,
     );
   }
 }

@@ -33,6 +33,11 @@ namespace eProdaja.Services
                 filteredQuery = filteredQuery.Where(x => x.Naziv.Contains(search.FTS));
             }
 
+            if (!string.IsNullOrWhiteSpace(search?.Sifra))
+            {
+                filteredQuery = filteredQuery.Where(x => x.Sifra == search.Sifra);
+            }
+
             return filteredQuery;
         }
 

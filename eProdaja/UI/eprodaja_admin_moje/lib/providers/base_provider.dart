@@ -20,12 +20,11 @@ abstract class BaseProvider<T> with ChangeNotifier {
   }
 
   Future<SearchResult<T>> get({dynamic filter}) async {
-    // var url = "{$_baseUrl$_endpoint}/GetAll"; // todo fix the url link
+    // var url = "$_baseUrl$_endpoint/GetAll";
     var url = "http://localhost:5151/Proizvodi/GetAll";
-
     if (filter != null) {
       var qurey = getQueryString(filter);
-      url = "$_baseUrl?$qurey";
+      url = "$url?$qurey";
     }
     var uri = Uri.parse(url);
     var rez = SearchResult<T>();

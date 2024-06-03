@@ -25,6 +25,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
   }
 
   SearchResult<Proizvod>? result = null;
+
   @override
   Widget build(BuildContext context) {
     return MasterScreen(

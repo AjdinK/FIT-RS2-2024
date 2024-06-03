@@ -6,6 +6,13 @@ class PorductScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MasterScreen(const Scaffold(), "Proizvodi");
+    return MasterScreen(
+      Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.redAccent,
+        ),
+      ),
+      "Proizvodi",
+    );
   }
 }

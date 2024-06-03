@@ -74,7 +74,7 @@ class LoginSreen extends StatelessWidget {
                   ProductProvider productProvider = ProductProvider();
 
                   try {
-                    var data = await productProvider.GetAll();
+                    var data = await productProvider.get();
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => const PorductScreen(),

@@ -1,5 +1,3 @@
-import 'dart:js_interop';
-
 import 'package:eprodaja_admin_moje/layouts/master_screen.dart';
 import 'package:eprodaja_admin_moje/models/proizvod.dart';
 import 'package:eprodaja_admin_moje/models/search_result.dart';
@@ -22,7 +20,7 @@ class _PorductScreenState extends State<PorductScreen> {
         children: [
           _buildSearch(),
           // _buildResultView(),
-          // _buildResultView2(),
+          _buildResultView2(),
         ],
       ),
       "Proizvodi",
@@ -43,7 +41,7 @@ class _PorductScreenState extends State<PorductScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
+                SizedBox(
                   width: 300,
                   child: TextField(
                     controller: searchNaziv,
@@ -56,7 +54,7 @@ class _PorductScreenState extends State<PorductScreen> {
                 const SizedBox(
                   width: 20,
                 ),
-                Container(
+                SizedBox(
                   width: 300,
                   child: TextField(
                     controller: searchSifra,
@@ -133,7 +131,7 @@ class _PorductScreenState extends State<PorductScreen> {
                         ),
                         DataCell(
                           e.slika != null
-                              ? Container(
+                              ? SizedBox(
                                   width: 100,
                                   height: 100,
                                   child: imageFromString(e.slika!),
@@ -157,7 +155,7 @@ class _PorductScreenState extends State<PorductScreen> {
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Colors.grey.shade200,
+          color: Colors.grey.shade100,
           borderRadius: BorderRadius.circular(6),
         ),
         child: SingleChildScrollView(
@@ -173,7 +171,13 @@ class _PorductScreenState extends State<PorductScreen> {
                 label: Text("Sifra"),
               ),
               DataColumn(
+                label: Text("Cijena"),
+              ),
+              DataColumn(
                 label: Text("Slika"),
+              ),
+              DataColumn(
+                label: Text("Akcije"),
               ),
             ],
             rows: result?.resultList
@@ -198,13 +202,33 @@ class _PorductScreenState extends State<PorductScreen> {
                           ),
                           DataCell(
                             e.slika != null
-                                ? Container(
+                                ? SizedBox(
                                     width: 100,
                                     height: 100,
                                     child: imageFromString(e.slika!),
                                   )
                                 : const Text(""),
                           ),
+                          DataCell(Row(
+                            children: [
+                              TextButton(
+                                onPressed: () {},
+                                child: const Text(
+                                  "Edit",
+                                  style: TextStyle(
+                                    color: Colors.blue,
+                                  ),
+                                ),
+                              ),
+                              TextButton(
+                                onPressed: () {},
+                                child: const Text(
+                                  "Delete",
+                                  style: TextStyle(color: Colors.red),
+                                ),
+                              )
+                            ],
+                          )),
                         ],
                       ),
                     )

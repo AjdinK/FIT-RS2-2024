@@ -17,7 +17,9 @@ class _MasterScreenState extends State<MasterScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        backgroundColor: Colors.white,
       ),
+      backgroundColor: Colors.white,
       drawer: Drawer(
         child: ListView(
           children: [

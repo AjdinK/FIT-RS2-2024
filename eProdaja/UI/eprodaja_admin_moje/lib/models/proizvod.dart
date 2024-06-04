@@ -12,6 +12,7 @@ class Proizvod {
   int? jedinicaMjereId;
 
   Proizvod({this.proizvodId, this.naziv});
+
   factory Proizvod.fromJson(Map<String, dynamic> json) =>
       _$ProizvodFromJson(json);
   Map<String, dynamic> toJson() => _$ProizvodToJson(this);

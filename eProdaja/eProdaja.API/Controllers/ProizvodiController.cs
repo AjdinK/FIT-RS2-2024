@@ -2,6 +2,7 @@
 using eProdaja.Model.Requests;
 using eProdaja.Model.SearchObjects;
 using eProdaja.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eProdaja.API.Controllers
@@ -36,6 +37,13 @@ namespace eProdaja.API.Controllers
         public List<string> AllowedActions(int id)
         {
             return (_service as IProizvodiService).AllowedActions(id);
+        }
+
+        [AllowAnonymous]
+        [HttpGet("{id}/recommend")]
+        public List<Proizvodi> Recommend(int id)
+        {
+            return (_service as IProizvodiService).Recommend(id);
         }
     }
 }

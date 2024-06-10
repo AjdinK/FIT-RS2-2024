@@ -9,6 +9,7 @@ namespace eProdaja.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [AllowAnonymous]
     public class VrsteProizvodumController : BaseCRUDController<VrsteProizvodum, VrsteProizvodumSearchObject, VrsteProizvodumUpsertRequest, VrsteProizvodumUpsertRequest>
     {
         

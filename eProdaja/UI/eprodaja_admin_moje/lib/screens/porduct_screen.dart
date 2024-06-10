@@ -4,6 +4,7 @@ import 'package:eprodaja_admin_moje/models/search_result.dart';
 import 'package:eprodaja_admin_moje/providers/product_provider.dart';
 import 'package:eprodaja_admin_moje/providers/util.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class PorductScreen extends StatefulWidget {
   PorductScreen({super.key});
@@ -19,8 +20,7 @@ class _PorductScreenState extends State<PorductScreen> {
       Column(
         children: [
           _buildSearch(),
-          // _buildResultView(),
-          _buildResultView2(),
+          _buildResultView(),
         ],
       ),
       "Proizvodi",
@@ -30,7 +30,13 @@ class _PorductScreenState extends State<PorductScreen> {
   TextEditingController? searchNaziv = TextEditingController();
   TextEditingController? searchSifra = TextEditingController();
   SearchResult<Proizvod>? result;
-  ProductProvider productProvider = ProductProvider();
+
+  late ProductProvider provider;
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    provider = context.read<ProductProvider>();
+  }
 
   Widget _buildSearch() {
     return Padding(
@@ -74,7 +80,7 @@ class _PorductScreenState extends State<PorductScreen> {
                       'sifra': searchSifra?.text
                     };
 
-                    result = await productProvider.get(filter: filter);
+                    result = await provider.get(filter: filter);
                     setState(() {});
                   },
                   child: const Text("Search"),
@@ -88,68 +94,6 @@ class _PorductScreenState extends State<PorductScreen> {
   }
 
   Widget _buildResultView() {
-    return Expanded(
-      child: SingleChildScrollView(
-        child: DataTable(
-          columns: const [
-            DataColumn(
-              label: Text("ID"),
-              numeric: true,
-            ),
-            DataColumn(
-              label: Text("Naziv"),
-            ),
-            DataColumn(
-              label: Text("Šifra"),
-            ),
-            DataColumn(
-              label: Text("Cijena"),
-            ),
-            DataColumn(
-              label: Text("Slika"),
-            ),
-          ],
-          rows: result?.resultList
-                  .map(
-                    (e) => DataRow(
-                      cells: [
-                        DataCell(
-                          Text(
-                            e.proizvodId.toString(),
-                          ),
-                        ),
-                        DataCell(
-                          Text(e.naziv ?? ""),
-                        ),
-                        DataCell(
-                          Text(e.sifra ?? ""),
-                        ),
-                        DataCell(
-                          Text(
-                            formatNumber(e.cijena),
-                          ),
-                        ),
-                        DataCell(
-                          e.slika != null
-                              ? SizedBox(
-                                  width: 100,
-                                  height: 100,
-                                  child: imageFromString(e.slika!),
-                                )
-                              : const Text(""),
-                        ),
-                      ],
-                    ),
-                  )
-                  .toList()
-                  .cast<DataRow>() ??
-              [], // Convert Iterable to List
-        ),
-      ),
-    );
-  }
-
-  Widget _buildResultView2() {
     return Padding(
       padding: const EdgeInsets.all(100),
       child: Container(

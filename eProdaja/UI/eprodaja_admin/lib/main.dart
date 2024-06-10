@@ -1,6 +1,8 @@
 import 'package:eprodaja_admin/providers/auth_provider.dart';
+import 'package:eprodaja_admin/providers/jedenice_mjere_provider.dart';
 import 'package:eprodaja_admin/providers/logged_product_provider.dart';
 import 'package:eprodaja_admin/providers/product_provider.dart';
+import 'package:eprodaja_admin/providers/vrste_proizvoda_provider.dart';
 import 'package:eprodaja_admin/screens/product_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -9,6 +11,8 @@ void main() {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider<ProductProvider>(create: (_) => LoggedProductProvider()),
+      ChangeNotifierProvider<JediniceMjereProvider>(create: (_) => JediniceMjereProvider()),
+      ChangeNotifierProvider<VrsteProizvodaProvider>(create: (_) => VrsteProizvodaProvider()),
     ],
     child: const MyApp(),));
 }
@@ -75,6 +79,10 @@ TextEditingController _passwordController = new TextEditingController();
                     print("credentials: ${_usernameController.text} : ${_passwordController.text}");
                     AuthProvider.username = _usernameController.text;
                     AuthProvider.password = _passwordController.text;
+
+                    if (_usernameController.text == "") {
+
+                    }
                     try {
                       var data = await provider.get();
                       Navigator.of(context).push(MaterialPageRoute(builder:  (context) => ProductListScreen()));

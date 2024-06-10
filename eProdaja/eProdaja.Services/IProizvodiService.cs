@@ -17,5 +17,7 @@ namespace eProdaja.Services
         public Proizvodi Hide(int id);
 
         public List<string> AllowedActions(int id);
+
+        List<Model.Proizvodi> Recommend(int id);
     }
 }

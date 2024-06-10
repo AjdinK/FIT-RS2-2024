@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 
 class ProductProvider extends BaseProvider<Proizvod> {
-  ProductProvider() : super("Proizvodi");
+  ProductProvider(): super("Proizvodi");
 
   @override
   Proizvod fromJson(data) {

@@ -16,9 +16,7 @@ class _MasterScreenState extends State<MasterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
+      appBar: AppBar(title: Text(widget.title),),
       drawer: Drawer(
         child: ListView(
           children: [
@@ -29,31 +27,28 @@ class _MasterScreenState extends State<MasterScreen> {
                 Navigator.pop(context);
               },
             ),
-            ListTile(
+             ListTile(
               title: Text("Detalji"),
               onTap: () {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => ProductDetailsScreen()));
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => ProductDetailsScreen()));
               },
             ),
             ListTile(
               title: Text("Korisnici"),
               onTap: () {
-                Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => UserListScreen()));
+                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => UserListScreen()));
               },
             ),
             ListTile(
               title: Text("Proizvodi"),
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => ProductListScreen()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProductListScreen()));
               },
             )
           ],
         ),
       ),
-      body: widget.child,
+      body: widget.child ,
     );
   }
 }

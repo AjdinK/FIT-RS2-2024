@@ -16,7 +16,7 @@ namespace eProdaja.Model.Requests
 
         public int JedinicaMjereId { get; set; }
 
-        //public byte[]? Slika { get; set; }
+        public byte[]? Slika { get; set; }
 
         //public byte[]? SlikaThumb { get; set; }
 

@@ -12,7 +12,6 @@ import 'package:provider/provider.dart';
 
 import '../../providers/cart_provider.dart';
 
-
 class ProductListScreen extends StatefulWidget {
   static const String routeName = "/product";
 
@@ -47,64 +46,64 @@ class _ProductListScreenState extends State<ProductListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return MasterScreen("Proizvodi",
-    SingleChildScrollView(
-      child: Container(
-        child: Column(
-          children: [
-            _buildProductSearch(),
-            Container(
-              height: 500,
-              child: GridView(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 4 / 3,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 30
-                ),
-                scrollDirection: Axis.horizontal,
-                children: _buildProductCardList(),
-              ),
-            )
-          ],
-        ),
-      ),
-    ) );
+    return MasterScreen(
+        "Proizvodi",
+        SingleChildScrollView(
+          child: Container(
+            child: Column(
+              children: [
+                _buildProductSearch(),
+                Container(
+                  height: 500,
+                  child: GridView(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio: 4 / 3,
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 30),
+                    scrollDirection: Axis.horizontal,
+                    children: _buildProductCardList(),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ));
   }
-  
+
   Widget _buildProductSearch() {
     return Row(
       children: [
         Expanded(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              controller: _searchController,
-              onSubmitted: (value) async {
-                 var tmpData = await _productProvider?.get(filter: {'fts': _searchController.text});
-                setState(() {
-                  data = tmpData!;
-                });
-              },
-              decoration: InputDecoration(
-                hintText: "Search",
-                prefixIcon: Icon(Icons.search)
-              ),
-            ),
-          )),
-          Container(
-            padding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-            child: IconButton(
-              icon: Icon(Icons.filter_list),
-              onPressed: () async {
-                print('called product');
-                 var tmpData = await _productProvider?.get(filter: {'fts': _searchController.text});
-                setState(() {
-                  data = tmpData!;
-                });
-              },
-            ),
-          )
+            child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextField(
+            controller: _searchController,
+            onSubmitted: (value) async {
+              var tmpData = await _productProvider
+                  ?.get(filter: {'fts': _searchController.text});
+              setState(() {
+                data = tmpData!;
+              });
+            },
+            decoration: InputDecoration(
+                hintText: "Search", prefixIcon: Icon(Icons.search)),
+          ),
+        )),
+        Container(
+          padding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+          child: IconButton(
+            icon: Icon(Icons.filter_list),
+            onPressed: () async {
+              print('called product');
+              var tmpData = await _productProvider
+                  ?.get(filter: {'fts': _searchController.text});
+              setState(() {
+                data = tmpData!;
+              });
+            },
+          ),
+        )
       ],
     );
   }
@@ -114,24 +113,30 @@ class _ProductListScreenState extends State<ProductListScreen> {
       return [Text("Loading...")];
     }
 
-    List<Widget> list = data!.result.map((x) => Container(
-      child: Column(
-        children: [
-          Container(
-            height: 100,
-            width: 100,
-            child: x.slika == null ? Placeholder() : imageFromString(x.slika!),
-          ),
-          Text(x.naziv ?? ""),
-          Text(formatNumber(x.cijena)),
-          IconButton(onPressed: () {
-              _cartProvider?.addToCart(x);
-          }, icon: Icon(Icons.shopping_cart))
-        ],
-      ),
-    )).cast<Widget>().toList();
-    
+    List<Widget> list = data!.result
+        .map((x) => Container(
+              child: Column(
+                children: [
+                  Container(
+                    height: 100,
+                    width: 100,
+                    child: x.slika == null
+                        ? Placeholder()
+                        : imageFromString(x.slika!),
+                  ),
+                  Text(x.naziv ?? ""),
+                  Text(formatNumber(x.cijena)),
+                  IconButton(
+                      onPressed: () {
+                        _cartProvider?.addToCart(x);
+                      },
+                      icon: Icon(Icons.shopping_cart))
+                ],
+              ),
+            ))
+        .cast<Widget>()
+        .toList();
+
     return list;
   }
- 
 }

@@ -23,7 +23,6 @@ class ProductDetailsScreen extends StatefulWidget {
 }
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
-
   final _formKey = GlobalKey<FormBuilderState>();
   Map<String, dynamic> _initialValue = {};
   late ProductProvider productProvider;
@@ -36,149 +35,159 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-
   }
 
   @override
   void initState() {
-
     productProvider = context.read<ProductProvider>();
     jediniceMjereProvider = context.read<JediniceMjereProvider>();
     vrsteProizvodaProvider = context.read<VrsteProizvodaProvider>();
-        // TODO: implement initState
+
     super.initState();
 
     _initialValue = {
-        'sifra': widget.product?.sifra,
-        'naziv': widget.product?.naziv,
-        'cijena': widget.product?.cijena?.toString(),
-        'vrstaId': widget.product?.vrstaId?.toString(),
-        'jedinicaMjereId': widget.product?.jedinicaMjereId?.toString()
+      'sifra': widget.product?.sifra,
+      'naziv': widget.product?.naziv,
+      'cijena': widget.product?.cijena?.toString(),
+      'vrstaId': widget.product?.vrstaId?.toString(),
+      'jedinicaMjereId': widget.product?.jedinicaMjereId?.toString()
     };
-    
+
     initForm();
   }
 
   Future initForm() async {
-     vrstaProizvodaResult = await  vrsteProizvodaProvider.get();
-     jediniceMjereResult = await  jediniceMjereProvider.get();
-     print("retreived jedinice mjer: ${jediniceMjereResult?.result.length}");
+    vrstaProizvodaResult = await vrsteProizvodaProvider.get();
+    jediniceMjereResult = await jediniceMjereProvider.get();
+    print("retreived jedinice mjer: ${jediniceMjereResult?.result.length}");
 
-     print("vr ${vrstaProizvodaResult?.result}");
-     setState(() {
-       isLoading = false;
-     });
+    print("vr ${vrstaProizvodaResult?.result}");
+    setState(() {
+      isLoading = false;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return MasterScreen("Detalji"
-      ,Column(children: [
-          isLoading ? Container() : _buildForm(),
-          _saveRow()
-        ],)
-     );
+    return MasterScreen(
+        "Detalji",
+        Column(
+          children: [isLoading ? Container() : _buildForm(), _saveRow()],
+        ));
   }
 
   Widget _buildForm() {
-    return FormBuilder(key: _formKey, initialValue: _initialValue,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
+    return FormBuilder(
+        key: _formKey,
+        initialValue: _initialValue,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Row(
                 children: [
-                    Row(
-                      children: [
-                        Expanded(
-                            child: FormBuilderTextField(
-                              decoration: InputDecoration(labelText: "Šifra"),
-                              name: "sifra",
-                            )
-                          ),
-                          SizedBox(width: 10,),
-                          Expanded(
-                            child: FormBuilderTextField(
-                              decoration: InputDecoration(labelText: "Naziv"),
-                              name: "naziv",
-                            )
-                          )
-                      ],
-                    ),
-                    Row(
-                       children: [
-                          Expanded(
-                            child:   FormBuilderDropdown(
-                              name: "vrstaId",
-                              decoration: InputDecoration(labelText: "Vrsta proizvoda"),
-                              items: vrstaProizvodaResult?.result.map((item) => DropdownMenuItem(value: item.vrstaId.toString() ,child: Text(item.naziv ?? ""))).toList() ?? [],
-                              )
-                          ),
-                          SizedBox(width: 10,),
-                          Expanded(
-                            child:   FormBuilderDropdown(
-                              name: "jedinicaMjereId",
-                              decoration: InputDecoration(labelText: "Jedinica mjere"),
-                              items: jediniceMjereResult?.result.map((item) => DropdownMenuItem(value: item.jedinicaMjereId.toString() ,child: Text(item.naziv ?? ""))).toList() ?? [],
-                              )
-                          ),
-                          SizedBox(width: 10,),
-                          Expanded(
-                            child: FormBuilderTextField(
-                              decoration: InputDecoration(labelText: "Cijena"),
-                              name: "cijena",
-                            )
-                          )
-                       ],
-                    ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: FormBuilderField(
-                            name: "imageId",
-                            builder: (field)  {
-                                return InputDecorator(
-                                  decoration: InputDecoration(labelText: "Odaberite sliku"),
-                                  child: ListTile(
-                                      leading: Icon(Icons.image),
-                                      title: Text("Select image"),
-                                      trailing: Icon(Icons.file_upload),
-                                      onTap: getImage,
-                                  ),
-                                );
-                            },
-                          )
-                        )
-                    ],
-                  )
-                ],),
-            ));
+                  Expanded(
+                      child: FormBuilderTextField(
+                    decoration: InputDecoration(labelText: "Šifra"),
+                    name: "sifra",
+                  )),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                      child: FormBuilderTextField(
+                    decoration: InputDecoration(labelText: "Naziv"),
+                    name: "naziv",
+                  ))
+                ],
+              ),
+              Row(
+                children: [
+                  Expanded(
+                      child: FormBuilderDropdown(
+                    name: "vrstaId",
+                    decoration: InputDecoration(labelText: "Vrsta proizvoda"),
+                    items: vrstaProizvodaResult?.result
+                            .map((item) => DropdownMenuItem(
+                                value: item.vrstaId.toString(),
+                                child: Text(item.naziv ?? "")))
+                            .toList() ??
+                        [],
+                  )),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                      child: FormBuilderDropdown(
+                    name: "jedinicaMjereId",
+                    decoration: InputDecoration(labelText: "Jedinica mjere"),
+                    items: jediniceMjereResult?.result
+                            .map((item) => DropdownMenuItem(
+                                value: item.jedinicaMjereId.toString(),
+                                child: Text(item.naziv ?? "")))
+                            .toList() ??
+                        [],
+                  )),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                      child: FormBuilderTextField(
+                    decoration: InputDecoration(labelText: "Cijena"),
+                    name: "cijena",
+                  ))
+                ],
+              ),
+              Row(
+                children: [
+                  Expanded(
+                      child: FormBuilderField(
+                    name: "imageId",
+                    builder: (field) {
+                      return InputDecorator(
+                        decoration:
+                            InputDecoration(labelText: "Odaberite sliku"),
+                        child: ListTile(
+                          leading: Icon(Icons.image),
+                          title: Text("Select image"),
+                          trailing: Icon(Icons.file_upload),
+                          onTap: getImage,
+                        ),
+                      );
+                    },
+                  ))
+                ],
+              )
+            ],
+          ),
+        ));
   }
-  
+
   Widget _saveRow() {
-      return Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            ElevatedButton(onPressed: () {
-              _formKey.currentState?.saveAndValidate();
-              debugPrint(_formKey.currentState?.value.toString());
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          ElevatedButton(
+              onPressed: () {
+                _formKey.currentState?.saveAndValidate();
+                debugPrint(_formKey.currentState?.value.toString());
 
-              var request = Map.from(_formKey.currentState!.value);
-              
-              request['slika'] = _base64Image;
+                var request = Map.from(_formKey.currentState!.value);
 
+                request['slika'] = _base64Image;
 
-              if(widget.product == null) {
-                productProvider.insert(request);
-              } else {
-                productProvider.update(widget.product!.proizvodId!, request);
-              }
-
-              
-            }, child: Text("Sačuvaj"))
-          ],
-        ),
-      );
+                if (widget.product == null) {
+                  productProvider.insert(request);
+                } else {
+                  productProvider.update(widget.product!.proizvodId!, request);
+                }
+              },
+              child: Text("Sačuvaj"))
+        ],
+      ),
+    );
   }
 
   File? _image;
@@ -188,11 +197,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     var result = await FilePicker.platform.pickFiles(type: FileType.image);
 
     if (result != null && result.files.single.path != null) {
-        _image = File(result.files.single.path!);
-        _base64Image = base64Encode(_image!.readAsBytesSync());
+      _image = File(result.files.single.path!);
+      _base64Image = base64Encode(_image!.readAsBytesSync());
     }
   }
 }
-
-
-

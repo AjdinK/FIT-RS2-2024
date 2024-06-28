@@ -25,7 +25,7 @@ namespace eProdaja.Services
 
         public override IQueryable<Database.Korisnici> AddFilter(KorisniciSearchObject searchObject, IQueryable<Database.Korisnici> query)
         {
-            query =  base.AddFilter(searchObject, query);
+            query = base.AddFilter(searchObject, query);
             if (!string.IsNullOrWhiteSpace(searchObject?.ImeGTE))
             {
                 query = query.Where(x => x.Ime.StartsWith(searchObject.ImeGTE));
@@ -107,7 +107,7 @@ namespace eProdaja.Services
 
         public Model.Korisnici Login(string username, string password)
         {
-            var entity = Context.Korisnicis.Include(x=> x.KorisniciUloges).ThenInclude(y=>y.Uloga).FirstOrDefault(x => x.KorisnickoIme == username);
+            var entity = Context.Korisnicis.Include(x => x.KorisniciUloges).ThenInclude(y => y.Uloga).FirstOrDefault(x => x.KorisnickoIme == username);
 
             if (entity == null)
             {

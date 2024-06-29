@@ -1,13 +1,15 @@
 using eProdaja.Model;
 using eProdaja.Model.SearchObject;
 using eProdaja.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eProdaja.API.Controllers;
-[ApiController]
-[Route ("[controller]")]
 
-public class BaseController <TModel , TSearch> : ControllerBase where TModel : class where TSearch : BaseSearchObject
+[ApiController]
+[Route("[controller]")]
+[Authorize]
+public class BaseController<TModel, TSearch> : ControllerBase where TModel : class where TSearch : BaseSearchObject
 {
     protected IService<TModel, TSearch> _service;
 
@@ -27,5 +29,4 @@ public class BaseController <TModel , TSearch> : ControllerBase where TModel : c
     {
         return _service.GetById(id);
     }
-
 }

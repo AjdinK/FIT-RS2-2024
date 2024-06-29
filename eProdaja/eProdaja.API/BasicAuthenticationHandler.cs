@@ -8,10 +8,11 @@ using System.Text.Encodings.Web;
 
 namespace eProdaja.API
 {
-    public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>
+    public class BasicAuthenticationHandler : AuthenticationHandler <AuthenticationSchemeOptions>
     {
         IKorisniciService _korisniciService;
-        public BasicAuthenticationHandler(IOptionsMonitor<AuthenticationSchemeOptions> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock, IKorisniciService korisniciService) : base(options, logger, encoder, clock)
+        public BasicAuthenticationHandler(IOptionsMonitor<AuthenticationSchemeOptions>
+         options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock, IKorisniciService korisniciService) : base(options, logger, encoder, clock)
         {
             _korisniciService = korisniciService;
         }
@@ -58,4 +59,5 @@ namespace eProdaja.API
             }
         }
     }
+
 }

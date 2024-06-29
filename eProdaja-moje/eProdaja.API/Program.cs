@@ -1,5 +1,4 @@
 using eProdaja.API;
-using eProdaja.Model.SearchObject;
 using eProdaja.Services;
 using eProdaja.Services.Database;
 using eProdaja.Services.ProizvodiStateMachine;
@@ -13,7 +12,25 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.AddSecurityDefinition("basicAuth", new OpenApiSecurityScheme
+    {
+        Type = SecuritySchemeType.Http,
+        Scheme = "basic"
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "basicAuth" }
+            },
+            new string[] { }
+        }
+    });
+});
 
 var connectionString = builder.Configuration.GetConnectionString("db3");
 builder.Services.AddDbContext<EProdajaContext>(options =>
@@ -21,6 +38,11 @@ builder.Services.AddDbContext<EProdajaContext>(options =>
 
 
 builder.Services.AddMapster();
+
+builder.Services.AddAuthentication("BasicAuthentication")
+    .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
+
+
 builder.Services.AddTransient<IKorisnici, KorisniciService>();
 builder.Services.AddTransient<IProizvodi, ProizvodiService>();
 

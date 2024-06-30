@@ -106,5 +106,7 @@
     "sound": "off",
     "announcement": "off"
   },
-  "accessibility.signals.sounds.volume": 0
+  "accessibility.signalOptions": {
+    "volume": 0
+  }
 }

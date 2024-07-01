@@ -5,8 +5,19 @@ class ProductListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
+    return Scaffold(
+      appBar: AppBar(
+        title: const Center(
+          child: Text(
+            "Product List Screen",
+            style: TextStyle(
+              fontSize: 17,
+              fontStyle: FontStyle.italic,
+            ),
+          ),
+        ),
+      ),
+      body: const Center(
         child: Text("Product List screen page"),
       ),
     );

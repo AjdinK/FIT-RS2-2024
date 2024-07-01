@@ -1,4 +1,4 @@
-import 'screens/product_screen.dart';
+import 'screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,10 +15,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.yellow,
+          seedColor: Colors.blue,
         ),
       ),
-      home: ProductScreen(),
+      home: LoginScreen(),
     );
   }
 }

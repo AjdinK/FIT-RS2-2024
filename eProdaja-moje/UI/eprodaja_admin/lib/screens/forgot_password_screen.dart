@@ -1,5 +1,4 @@
 import "package:flutter/material.dart";
-import 'package:flutter/widgets.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   const ForgotPasswordScreen({super.key});
@@ -29,6 +28,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                 height: 5,
               ),
               const Text(
+                textAlign: TextAlign.center,
                 "Enter Your Email and well send you a link to reset your password",
                 style: TextStyle(color: Colors.grey),
               ),
@@ -37,6 +37,7 @@ class ForgotPasswordScreen extends StatelessWidget {
               ),
               TextField(
                 decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.email),
                   labelText: "Email",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(9),
@@ -59,7 +60,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                   ),
                   child: const Center(
                     child: Text(
-                      'Submit',
+                      "Submit",
                       style: TextStyle(
                         color: Colors.white,
                       ),

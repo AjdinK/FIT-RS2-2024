@@ -122,12 +122,10 @@ class LoginScreen extends StatelessWidget {
                   const SizedBox(
                     height: 40,
                   ),
-                  Expanded(
-                    child: TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                          "Dont have an account? , register here now!"),
-                    ),
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text(
+                        "Dont have an account? , register here now!"),
                   ),
                 ],
               ),

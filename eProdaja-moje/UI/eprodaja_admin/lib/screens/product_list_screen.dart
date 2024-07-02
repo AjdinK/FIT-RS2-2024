@@ -1,3 +1,4 @@
+import 'package:eprodaja_admin/screens/master_screen.dart';
 import 'package:flutter/material.dart';
 
 class ProductListScreen extends StatelessWidget {
@@ -5,20 +6,14 @@ class ProductListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Center(
-          child: Text(
-            "Product List Screen",
-            style: TextStyle(
-              fontSize: 17,
-              fontStyle: FontStyle.italic,
-            ),
-          ),
+    return MasterScreen(
+      "Proizvodi",
+      const Center(
+        child: Column(
+          children: [
+            Text("test"),
+          ],
         ),
-      ),
-      body: const Center(
-        child: Text("Product List screen page"),
       ),
     );
   }
